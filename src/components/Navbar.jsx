@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="h-8 flex justify-between items-center px-3 py-5  bg-gray-400 text-black border-0">
+    <nav className="h-8 w-full flex justify-between items-center px-3 py-5 fixed top-0 left-0 bg-gray-400 text-black border-0">
       <h2 className="border-0">Plan Smart</h2>
       <ul style={styles.menu}>
         <li><Link to="/" className="">Home</Link></li>
         <li><Link to="/about" className="">About</Link></li>
-        <li><Link to="/contact" className="">Contact</Link></li>
+        {/* <li><Link to="/contact" className="">Contact</Link></li> */}
         <li><Link to="/login" className="">Login</Link></li>
+        <li><Link to="/signup" className="">Sign up</Link></li>
       </ul>
     </nav>
   );
