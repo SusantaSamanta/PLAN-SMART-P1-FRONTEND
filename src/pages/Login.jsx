@@ -7,7 +7,7 @@ const Login = () => {
 
   const formHeightInMobile = useRef(null);
   useEffect(() => {
-    if (window.screen.width < 500) {
+    if (window.screen.width < 500 && document.documentElement.clientHeight > 700) {
       formHeightInMobile.current.style.height =
         document.documentElement.clientHeight + "px";
     }
@@ -36,12 +36,12 @@ const Login = () => {
     <>
       <section className='bg-[#101114]'>
 
-        <div ref={formHeightInMobile} className='h-screen md:h-screen  flex justify-center items-end md:items-center text-white overflow-hidden
+        <div ref={formHeightInMobile} className='h-auto md:h-screen  flex flex-col justify-center items-end md:items-center text-white overflow-hidden
           bg-[url("./assets/Rays.svg")]  
           bg-[length:150%_150%] bg-[-40px_-350px] 
           md:bg-[length:120%_120%] md:bg-[80px_-280px] 
-          lg:bg-[length:100%_100%] lg:bg-[0px_0px]  bg-no-repeat'>
-          <motion.div className='w-full  md:w-120 py-10 px-6 md:p-7 md:mt-4 border-t-1 md:border-2 border-[#6d6d6d2f] rounded-3xl md:rounded-3xl bg-[#dcdcdc06] backdrop-blur-[0px]'
+          lg:bg-[length:80%_80%] lg:bg-[top_right]  bg-no-repeat'>
+          <motion.div className='h-full md:h-auto  w-full md:w-120   pt-10 px-6 md:p-7 border-t-1 md:border-2 border-[#6d6d6d2f] rounded-3xl md:rounded-3xl bg-[#dcdcdc06] backdrop-blur-[0px]'
           // initial={{ opacity: 0, y: 50 }}
           // whileInView={{ opacity: 1, y: 0 }}
           // transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -65,15 +65,15 @@ const Login = () => {
                 type='email'
                 name='email'
                 placeholder='example@gmail.com'
-                className="mt-1 w-full  h-10 mb-3 px-4 py-2 rounded-lg bg-[#20242d4c] text-gray-200 border border-gray-700 focus:border-2 focus:border-gray-600 focus:outline-none" />
+                className="mt-1 w-full  h-12 md:h-10 mb-3 px-4 py-2 rounded-lg bg-[#20242d4c] text-gray-200 border border-gray-700 focus:border-2 focus:border-gray-600 focus:outline-none" />
 
 
-              <label htmlFor='password' h-10 className="block text-sm font-medium text-gray-300">Password</label>
+              <label htmlFor='password'  className="block text-sm font-medium text-gray-300">Password</label>
               <input
                 type='password'
                 name='password'
                 placeholder='•••••••••••••'
-                className="mt-1 w-full h-10  px-4 py-2 rounded-lg bg-[#20242d4c] text-gray-200 border focus:border-2 border-gray-700 focus:border-gray-600 focus:outline-none"
+                className="mt-1 w-full h-12 md:h-10  px-4 py-2 rounded-lg bg-[#20242d4c] text-gray-200 border focus:border-2 border-gray-700 focus:border-gray-600 focus:outline-none"
               />
 
 
@@ -156,7 +156,8 @@ const Login = () => {
 
 
             {/* Footer */}
-            <p className="mt-8 md:mt-5  text-center text-gray-400 text-sm">
+
+            <p className="mt-8 hidden md:block text-center text-gray-300 text-sm">
               Don't have an account?{" "}
               <Link to={'/signup'} className="text-blue-500 hover:underline">
                 Sign up
@@ -165,8 +166,13 @@ const Login = () => {
 
 
 
-
           </motion.div>
+          <p className="mb-10 w-full  md:hidden text-center text-gray-300 text-sm">
+            Don't have an account?{" "}
+            <Link to={'/signup'} className="text-blue-500 hover:underline">
+              Sign up
+            </Link>
+          </p>
 
         </div>
 
@@ -178,3 +184,12 @@ const Login = () => {
 }
 
 export default Login
+
+
+
+
+
+
+
+
+

@@ -5,6 +5,8 @@ export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
     const [isLogin, setIsLogin] = useState(true);
+    const [userDetails, setUserDetails] = useState([]);
+
 
     const variablesForSend = {
         isLogin, setIsLogin
@@ -14,7 +16,7 @@ const AppContextProvider = (props) => {
         <AppContext.Provider value={variablesForSend}>
             {props.children}
         </AppContext.Provider>
-  )
+    )
 }
 
 export default AppContextProvider;

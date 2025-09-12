@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 
-const ResetPasswordOtpInput = ({ email, length = 6, }) => {
+const ResetPasswordOtpInput = ({ setShowCurrentPage, email, length = 6, }) => {
 
     const [otp, setOtp] = useState(Array(length).fill(""));
     const inputsRef = useRef([]);
@@ -18,7 +18,7 @@ const ResetPasswordOtpInput = ({ email, length = 6, }) => {
         if (newOtp.every((d) => d !== "")) {
             // onComplete?.(newOtp.join(""));
             console.log(otp);
-            
+
         }
     };
 
@@ -59,6 +59,13 @@ const ResetPasswordOtpInput = ({ email, length = 6, }) => {
 
 
 
+    const handelNewPasswordInput = (e) => {
+        e.preventDefault();
+        setShowCurrentPage('EnterNewPassword');
+    }
+
+
+
     return (
         <>
             <div>
@@ -72,7 +79,7 @@ const ResetPasswordOtpInput = ({ email, length = 6, }) => {
                 </h2>
 
                 <p className="mt-2 text-base text-gray-200 text-center">We've sent an verification code to the address{" "}
-                    <span className='text-[#4A5CFF]'>{maskEmailConverter(email)}</span>
+                    <span className='text-[#ffffff] md:text-[#4A5CFF]'>{maskEmailConverter(email)}</span>
                 </p>
                 <p className="mt-2 text-base text-gray-200 text-center">
                     Please check your inbox (and your spam folder, just in case) for our email.
@@ -89,7 +96,7 @@ const ResetPasswordOtpInput = ({ email, length = 6, }) => {
                             value={num}
                             onChange={(e) => handleChange(e, i)}
                             onKeyDown={(e) => handleKeyDown(e, i)}
-                            className="w-10 h-10 text-center text-xl border-2 rounded bg-gray-800 text-white focus:border-blue-500 outline-none"
+                            className="w-10 h-10 text-center text-xl border-2 rounded bg-[#20242d4c] text-white focus:border-blue-500 outline-none"
                         />
                     ))}
                 </div>
@@ -104,7 +111,7 @@ const ResetPasswordOtpInput = ({ email, length = 6, }) => {
 
 
                     <button
-                        onClick={() => handelForgotPassword()}
+                        onClick={(e) => handelNewPasswordInput(e)}
                         type="submit"
                         className="w-full py-2 mt-4 rounded-lg bg-gradient-to-b from-[#769dff] to-[#1a5cff] text-white  hover:bg-blue-700 transition font-bold"
                     >
