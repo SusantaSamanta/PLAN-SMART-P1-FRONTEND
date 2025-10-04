@@ -9,15 +9,6 @@ import { RiCloseCircleLine } from "react-icons/ri";
 
 
 
-
-//  Validate password: At least 8 chars, 1 number, 1 special char, no spaces
-const passwordLengthVerify = (password) => {
-    const regex = /^(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])(?!.*\s).{8,}$/;
-    return regex.test(password);
-};
-
-
-
 const NewPasswordInput = () => {
 
     const [password, setPassword] = useState("");

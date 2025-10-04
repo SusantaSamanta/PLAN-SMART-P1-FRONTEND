@@ -1,0 +1,179 @@
+.card {
+    border-radius: 20px;
+    background: linear-gradient(to bottom,
+            rgba(39, 109, 167, 0) 0%,
+            rgba(39, 109, 167, 0.2) 70%,
+            rgba(39, 109, 167, 0.531) 100%);
+    box-shadow: inset 0 8px 22px 0 rgba(0, 0, 0, 0.15);
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    border: 20px solid transparent;
+    border-image: linear-gradient(to bottom,
+            rgba(247, 244, 244, 0) 0%,
+            rgba(46, 46, 46, 0.4) 50%,
+            rgb(253, 254, 255) 100%) 1;
+    filter: blur(15px);
+    pointer-events: none;
+    z-index: 2;
+    mix-blend-mode: overlay;
+}
+
+
+/* Top border glow */
+.card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* border: 1px solid red; */
+    border-radius: 20px;
+    padding: 2px;
+    background: conic-gradient(from 290deg,
+            #0b317e48,
+            #41d5ff 8%,
+            #1f4eab0c 14%,
+            transparent 70%);
+
+
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: index 2;
+    ;
+    /* opacity:70%; */
+}
+
+
+.border-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    border-radius: 25px;
+    padding: 2.5px;
+    background: conic-gradient(from 700deg,
+            #0b317e48 30%,
+            #41d5ff 40%,
+            transparent 70%);
+
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    filter: blur(10px);
+    z-index: 2;
+}
+
+
+
+.card>* {
+    position: absolute;
+    z-index: 3;
+
+}
+
+
+.top-shin {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url("./card-top-shine.svg") no-repeat center top;
+    background-size: cover;
+    pointer-events: none;
+    z-index: 2;
+    mix-blend-mode: overlay;
+    filter: blur(10px);
+}
+
+.bottom-glow1 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 170px;
+    background: url("./Light1.svg") no-repeat center bottom;
+    background-size: cover;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    filter: blur(20px);
+    z-index: 2;
+    opacity: 70%;
+}
+
+.bottom-glow2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(0, 90px);
+    width: 100%;
+    height: 180px;
+    background: url("./Light2.svg") no-repeat center bottom;
+    mix-blend-mode: overlay;
+    filter: blur(22px);
+    z-index: 2;
+    pointer-events: none;
+
+}
+
+.bottom-glow3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(-30px, 33px) scale(.8);
+    width: 100%;
+    height: 140px;
+
+    background: url("./Vector1.svg") no-repeat;
+    mix-blend-mode: color-dodge;
+    filter: blur(40px);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 70%;
+
+}
+
+.bottom-glow4 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(150px, 40px) scale(.8);
+    width: 100%;
+    height: 140px;
+
+    background: url("./Vector2.svg") no-repeat;
+    mix-blend-mode: color-dodge;
+    filter: blur(40px);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 70%;
+}
+
+
+
+
+/* Mobile override */
+
+@media (max-width: 768px) {
+    .card::after {
+        padding: 0px;
+    }
+
+    .border-glow {
+        padding: 0px;
+    }
+
+}

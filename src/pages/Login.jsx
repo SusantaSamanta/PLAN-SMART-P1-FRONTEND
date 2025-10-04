@@ -1,9 +1,21 @@
 import axios from 'axios'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion'
+import { AppContext } from '../context/AppContext';
 
 const Login = () => {
+
+  const { 
+    isLogin, setIsLogin,
+    userDetails, setUserDetails } = useContext(AppContext)
+
+  const [remember, setRemember] = useState(false);
+  const showErrMessage = useRef(null);
+  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+
+
 
   const formHeightInMobile = useRef(null);
   useEffect(() => {
@@ -13,22 +25,43 @@ const Login = () => {
     }
   }, []);
 
-  const [remember, setRemember] = useState(false);
 
-  const handelLogin = async () => {
+
+  const loginLoading = useRef(false);
+  const handelLogin = async (e) => {
+    e.preventDefault();
+
+    if (loginLoading.current) return;
+    loginLoading.current = true;
+    console.log(userEmail);
+
     try {
-      const response = await axios.post('/api/user/auth/login',
-        { email: 'asd@gmail', password: 'asd' },
+      const response = await axios.post('/api/auth/login',
+        {
+          email: userEmail,
+          password: userPassword
+        },
         {
           headers: { 'Content-Type': 'application/json' },
         }
       )
       console.log(response.data);
+      if (response.data.success = true){
+        setUserDetails(response.data.user);
+        setIsLogin(true);
+        // console.log(userDetails);
+      }
 
     } catch (error) {
-      console.log(error);
-
+      if (error.response.data) {
+        showErrMessage.current.style.display = 'block';
+        showErrMessage.current.innerText = error.response.data.message;
+        console.log(error.response.data.message)
+      }
+      else
+        console.log(error);
     }
+    loginLoading.current = false;
   }
 
 
@@ -57,21 +90,28 @@ const Login = () => {
 
             <p className="mt-2 text-base text-gray-200">  Welcome back! Please enter your details.</p>
 
-            <form className="mt-8 md:mt-4 ">
+            <form
+              onSubmit={(e) => handelLogin(e)}
+              className="mt-8 md:mt-4 "
+            >
 
 
               <label htmlFor='email' className="block text-sm font-medium text-gray-300">Email</label>
               <input
+                onChange={(e) => setUserEmail(e.target.value)}
                 type='email'
                 name='email'
+                required
                 placeholder='example@gmail.com'
                 className="mt-1 w-full  h-12 md:h-10 mb-3 px-4 py-2 rounded-lg bg-[#20242d4c] text-gray-200 border border-gray-700 focus:border-2 focus:border-gray-600 focus:outline-none" />
 
 
-              <label htmlFor='password'  className="block text-sm font-medium text-gray-300">Password</label>
+              <label htmlFor='password' className="block text-sm font-medium text-gray-300">Password</label>
               <input
+                onChange={(e) => setUserPassword(e.target.value)}
                 type='password'
                 name='password'
+                required
                 placeholder='•••••••••••••'
                 className="mt-1 w-full h-12 md:h-10  px-4 py-2 rounded-lg bg-[#20242d4c] text-gray-200 border focus:border-2 border-gray-700 focus:border-gray-600 focus:outline-none"
               />
@@ -81,12 +121,16 @@ const Login = () => {
 
 
               {/* error message */}
-              <div className='my-5 p-1 pl-3 border-l-2  rounded-[6px] bg-[#ff8a4f17]  text-[#ff8a4fc8] text-sm' style={{ lineHeight: 1.4 }}>Please enter a password Lorem ipsum dolor sit amet consectetur adipisicing elit.cere?</div>
+              <div
+                ref={showErrMessage}
+                className='hidden mt-4 p-1 pl-3 border-l-2  rounded-[6px] bg-[#ff8a4f17]  text-[#ff8a4fc8] text-sm' style={{ lineHeight: 1.4 }}>
+                {/* Please enter a password Lorem ipsum dolor sit amet consectetur adipisicing elit.cere? */}
+              </div>
 
 
 
 
-              <div className="flex mb-6 items-center justify-between text-sm ">
+              <div className="flex mt-4 mb-6 items-center justify-between text-sm ">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"

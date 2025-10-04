@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Frosted Glass Card</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Outfit:wght@100..900&display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'geist': ['Geist', 'sans-serif'],
+                        'outfit': ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        'glass-blue': '#276da7',
+                        'glass-border': '#5766ed',
+                        'glass-icon': '#8792f8',
+                        'glass-button': '#2d4ddb',
+                        'glass-button-hover': '#385bf8',
+                    },
+                    backdropBlur: {
+                        'xs': '2px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for complex glass effects that can't be replicated with Tailwind */
+        .glass-card {
+            background: linear-gradient(to bottom,
+                    rgba(39, 109, 167, 0) 0%,
+                    rgba(39, 109, 167, 0.2) 70%,
+                    rgba(39, 109, 167, 0.531) 100%);
+            box-shadow: inset 0 8px 22px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .glass-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 20px solid transparent;
+            border-image: linear-gradient(to bottom,
+                    rgba(247, 244, 244, 0) 0%,
+                    rgba(46, 46, 46, 0.4) 50%,
+                    rgb(253, 254, 255) 100%) 1;
+            filter: blur(10px);
+            pointer-events: none;
+            z-index: 2;
+            mix-blend-mode: overlay;
+        }
+
+        .glass-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: conic-gradient(from 290deg,
+                    #0b317e48,
+                    #41d5ff 8%,
+                    #1f4eab0c 14%,
+                    transparent 70%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: 2;
+        }
+
+        .border-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: conic-gradient(from 100deg,
+                    #0b317e48,
+                    #41d5ff 8%,
+                    #1f4eab0c 14%,
+                    transparent 70%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: 2;
+        }
+
+        .top-shine {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url("./card-top-shine.svg") no-repeat center top;
+            background-size: cover;
+            pointer-events: none;
+            z-index: 2;
+            mix-blend-mode: overlay;
+            filter: blur(10px);
+        }
+
+        .bottom-glow-1 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 170px;
+            background: url("./Light1.svg") no-repeat center bottom;
+            background-size: cover;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+            filter: blur(20px);
+            z-index: 2;
+            opacity: 0.7;
+        }
+
+        .bottom-glow-2 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transform: translate(0, 90px);
+            width: 100%;
+            height: 180px;
+            background: url("./Light2.svg") no-repeat center bottom;
+            mix-blend-mode: overlay;
+            filter: blur(22px);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .bottom-glow-3 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transform: translate(-30px, 33px) scale(0.8);
+            width: 100%;
+            height: 140px;
+            background: url("./Vector1.svg") no-repeat;
+            mix-blend-mode: color-dodge;
+            filter: blur(40px);
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .bottom-glow-4 {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            transform: translate(150px, 40px) scale(0.8);
+            width: 100%;
+            height: 140px;
+            background: url("./Vector2.svg") no-repeat;
+            mix-blend-mode: color-dodge;
+            filter: blur(40px);
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .glass-icon {
+            background: linear-gradient(#4a5cff 4%, #171e50 100%);
+        }
+
+        .glass-icon .fas {
+            mix-blend-mode: color-dodge;
+        }
+    </style>
+</head>
+
+<body
+    class="m-0 min-h-screen flex justify-center items-center bg-cover bg-center bg-no-repeat relative font-geist p-5 sm:p-4 md:p-5 lg:p-5"
+    style="background-image: url('./forgotPasswordBg.jpg');">
+    <!-- Blurred background overlay -->
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat blur-3xl"
+        style="background-image: url('./forgotPasswordBg.jpg');"></div>
+
+    <!-- Main Card -->
+    <div
+        class="w-full max-w-sm sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg min-h-80 sm:min-h-72 md:min-h-80 lg:min-h-96 xl:min-h-[28rem] rounded-3xl sm:rounded-2xl md:rounded-3xl glass-card relative overflow-hidden mx-auto">
+        <div class="border-glow"></div>
+
+        <!-- Light Effects -->
+        <div class="top-shine"></div>
+        <div class="bottom-glow-1"></div>
+        <div class="bottom-glow-2"></div>
+        <div class="bottom-glow-3"></div>
+        <div class="bottom-glow-4"></div>
+
+        <!-- Content -->
+        <div
+            class="absolute top-5 left-5 right-5 bottom-5 sm:top-4 sm:left-4 sm:right-4 sm:bottom-4 md:top-5 md:left-5 md:right-5 md:bottom-5 z-30 flex justify-center items-center">
+            <div class="w-full h-fit p-1 flex flex-col items-center overflow-hidden bg-transparent z-10">
+
+                <!-- Icon -->
+                <div
+                    class="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 xl:w-20 xl:h-20 glass-icon rounded-full border-2 border-glass-border flex justify-center items-center z-30">
+                    <i class="fas fa-key text-glass-icon text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl"></i>
+                </div>
+
+                <!-- Text Content -->
+                <div class="text-center">
+                    <h2
+                        class="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mt-4 mb-2 sm:mt-3 sm:mb-2 md:mt-4 md:mb-2 lg:mt-4 lg:mb-2 xl:mt-4 xl:mb-2">
+                        Forgot Password</h2>
+                    <span
+                        class="text-white/80 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base text-center leading-relaxed mb-3 sm:mb-2 md:mb-3 lg:mb-3 xl:mb-3 block w-full">We'll
+                        send you an email to reset your password.</span>
+                </div>
+
+                <!-- Form Container -->
+                <div
+                    class="w-full mt-5 sm:mt-4 md:mt-5 lg:mt-5 xl:mt-6 flex flex-col items-center gap-3 sm:gap-3 md:gap-3 lg:gap-4 xl:gap-4">
+
+                    <!-- Input Group -->
+                    <div class="relative w-full max-w-full sm:max-w-64 md:max-w-72 lg:max-w-80 xl:max-w-72">
+                        <i
+                            class="fas fa-envelope absolute left-5 sm:left-4 md:left-5 lg:left-5 xl:left-5 top-1/2 transform -translate-y-1/2 text-glass-icon text-sm sm:text-sm md:text-base lg:text-base xl:text-base z-40"></i>
+                        <input type="email" placeholder="Your Email"
+                            class="w-full max-w-full h-10 sm:h-10 md:h-11 lg:h-12 xl:h-12 pl-12 sm:pl-12 md:pl-12 lg:pl-12 xl:pl-12 pr-5 sm:pr-4 md:pr-5 lg:pr-5 xl:pr-5 border-2 border-white/30 rounded-xl sm:rounded-lg md:rounded-xl lg:rounded-xl xl:rounded-xl bg-transparent backdrop-blur-md text-white text-sm sm:text-sm md:text-sm lg:text-base xl:text-base font-geist outline-none transition-all duration-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" />
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button
+                        class="w-full max-w-full sm:max-w-64 md:max-w-72 lg:max-w-80 xl:max-w-72 h-10 sm:h-10 md:h-11 lg:h-12 xl:h-12 px-5 sm:px-4 md:px-5 lg:px-5 xl:px-5 border-2 border-glass-button-hover rounded-xl sm:rounded-lg md:rounded-xl lg:rounded-xl xl:rounded-xl bg-glass-button text-white text-sm sm:text-sm md:text-sm lg:text-base xl:text-lg font-semibold font-geist cursor-pointer transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0">
+                        Submit
+                    </button>
+
+                    <!-- Back to Login Link -->
+                    <a href="#"
+                        class="text-white/70 no-underline text-xs sm:text-xs md:text-xs lg:text-xs xl:text-xs font-medium font-geist uppercase tracking-wider transition-colors duration-300 hover:text-white/90 mt-1 sm:mt-1 md:mt-1 lg:mt-1 xl:mt-1">
+                        BACK TO LOGIN
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
