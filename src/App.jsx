@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import ProtectedRoute from './routes/ProtectedRoute'
 import Signup from './pages/Signup'
 import ForgotPassword from './pages/ForgotPassword'
+import Features from './components/Features'
 
 
 
@@ -24,7 +25,9 @@ const Layout = () => {
       }
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<h1>About</h1>} />
+        <Route path="/about" element={<Home scrollTo="about" />} /> 
+        <Route path="/features" element={<Home scrollTo="features" />} /> 
+        
         <Route path="/contact" element={
           <ProtectedRoute>
             <h1>Contact page</h1>

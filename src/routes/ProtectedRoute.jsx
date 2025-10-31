@@ -3,15 +3,25 @@ import { AppContext } from '../context/AppContext'
 import { Navigate } from 'react-router-dom';
 
 const ProtectedRoute = (props) => {
-    const { isLogin } = useContext(AppContext);
+    const { isLogin, isLoading } = useContext(AppContext);
+
+    if (isLoading) {
+        return <div className="text-white flex justify-center items-center h-screen">Loading...</div>
+    }
 
     return (
         isLogin ?
             props.children
             :
-            <Navigate to={'/'} />
+            <Navigate to={'/login'} replace/>
 
     )
 }
 
 export default ProtectedRoute
+
+
+
+
+
+

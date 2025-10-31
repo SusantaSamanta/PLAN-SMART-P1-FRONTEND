@@ -1,12 +1,12 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import { AppContext } from '../context/AppContext';
 
 const Login = () => {
 
-  const { 
+  const {
     isLogin, setIsLogin,
     userDetails, setUserDetails } = useContext(AppContext)
 
@@ -14,7 +14,7 @@ const Login = () => {
   const showErrMessage = useRef(null);
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
-
+  const navigate = useNavigate();
 
 
   const formHeightInMobile = useRef(null);
@@ -46,10 +46,11 @@ const Login = () => {
         }
       )
       console.log(response.data);
-      if (response.data.success = true){
+      if (response.data.success = true) {
         setUserDetails(response.data.user);
         setIsLogin(true);
         // console.log(userDetails);
+        navigate('/');
       }
 
     } catch (error) {
