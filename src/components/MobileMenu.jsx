@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 
 const MobileMenu = ({ menuOpen, setMenuOpen }) => {
 
-    console.log(menuOpen, setMenuOpen);
-
-
     const {
         isLogin, setIsLogin,
         userDetails, setUserDetails,
@@ -53,8 +50,8 @@ const MobileMenu = ({ menuOpen, setMenuOpen }) => {
 
 
                     {!isLoading && isLogin && (
-                        <Link onClick={() => closeMenu()} to="/profile" className="hover:text-blue-300 cursor-pointer transition border-0 w-full text-center">
-                            Profile
+                        <Link onClick={() => closeMenu()} to="/dashboard" className="hover:text-blue-300 cursor-pointer transition border-0 w-full text-center">
+                            Dashboard
                         </Link>
                     )}
                     <div className="flex items-center gap-4">

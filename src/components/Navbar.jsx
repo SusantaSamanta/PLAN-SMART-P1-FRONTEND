@@ -78,8 +78,8 @@ const Navbar = () => {
 
         {/* Logo */}
         <Link to={'/'} onClick={() => clickToScroll('home')} className="flex items-center gap-2">
-          <img src="../src/assets/react.svg" alt="logo" className="w-8 h-8 hidden lg:block" />
-          <h1 className="font-semibold text-lg">PlanSmart</h1>
+          <img src="../src/assets/react.svg" alt="logo" className="w-8 h-8 hidden lg:block hover:animate-[spin-slow_6s_linear_infinite]" />
+          <h1 className="font-semibold text-lg">VISION</h1>
         </Link>
 
         {/* Nav Links */}
@@ -96,8 +96,8 @@ const Navbar = () => {
           <Link to={'/contact'} className="hover:text-blue-300 cursor-pointer transition">Contact Us</Link>
 
           {!isLoading && isLogin && (
-            <Link to="/profile" className="hover:text-blue-300 cursor-pointer transition">
-              Profile
+            <Link to="/dashboard" className="hover:text-blue-300 cursor-pointer transition">
+              Dashboard
             </Link>
           )}
 

@@ -6,18 +6,34 @@ import Login from './pages/Login'
 import ProtectedRoute from './routes/ProtectedRoute'
 import Signup from './pages/Signup'
 import ForgotPassword from './pages/ForgotPassword'
-import Features from './components/Features'
+import DashboardRoutes from './routes/DashboardRoutes'
+import { ToastContainer } from 'react-toastify'
 
 
 
-const navHidden = ['/login', '/signup', '/forgot-password',];
+const navHidden = ['/login', '/signup', '/forgot-password', '/dashboard', '/dashboard/profile', '/dashboard/profile-setup'];
 
 
 const Layout = () => {
 
   const location = useLocation();
+
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      // transition={Bounce}
+      />
+
 
       {
         (!navHidden.includes(location.pathname)) &&
@@ -25,12 +41,13 @@ const Layout = () => {
       }
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<Home scrollTo="about" />} /> 
-        <Route path="/features" element={<Home scrollTo="features" />} /> 
-        
-        <Route path="/contact" element={
+        <Route path="/about" element={<Home scrollTo="about" />} />
+        <Route path="/features" element={<Home scrollTo="features" />} />
+        {/* <Route path="/contact" element={<Contact Page/>} /> */}
+
+        <Route path="/dashboard/*" element={
           <ProtectedRoute>
-            <h1>Contact page</h1>
+            <DashboardRoutes />
           </ProtectedRoute>
         } />
         <Route path="/login" element={<Login />} />

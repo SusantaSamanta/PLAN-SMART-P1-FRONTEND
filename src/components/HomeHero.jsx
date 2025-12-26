@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const HomeHero = () => {
     const ref = useRef(null);
@@ -29,9 +30,9 @@ const HomeHero = () => {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">
+                    <Link to="/dashboard" className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">
                         Get Started
-                    </button>
+                    </Link>
                     <button className="border border-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition flex items-center gap-2 justify-center">
                         Request a Demo <span className="text-lg">→</span>
                     </button>

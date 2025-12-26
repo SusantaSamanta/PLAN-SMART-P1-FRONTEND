@@ -6,7 +6,7 @@ const ProtectedRoute = (props) => {
     const { isLogin, isLoading } = useContext(AppContext);
 
     if (isLoading) {
-        return <div className="text-white flex justify-center items-center h-screen">Loading...</div>
+        return <div className="text-black text-3xl flex justify-center items-center h-screen">Loading...</div>
     }
 
     return (

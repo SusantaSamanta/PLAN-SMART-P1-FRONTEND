@@ -1,8 +1,21 @@
+import axios from 'axios';
 import { motion } from 'framer-motion';
-import React, { useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useRef, useState } from 'react'
+import { data, Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 const Signup = () => {
+
+  const navigate = useNavigate();
+
+  const [inputData, setInputData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+
+  const [showErr, setShowErr] = useState('');
+
 
 
   const formHeightInMobile = useRef(null);
@@ -13,6 +26,37 @@ const Signup = () => {
     }
   }, [])
 
+  const handelChange = (e) => {
+    const { name, value } = e.target;
+    setInputData((pre) => ({
+      ...pre, [name]: value
+    }));
+    setShowErr('');
+  }
+
+  const wait = useRef(false)
+  const handelRegistration = async (e) => {
+    e.preventDefault();
+    if (wait.current) return;
+    wait.current = true;
+    try {
+      const { data } = await axios.post(
+        '/api/auth/register',
+        inputData,
+        { headers: { "Content-Type": "application/json" } }
+      );
+
+      if (data.success) {
+        toast.success('Registration successful!');
+        navigate('/');
+      }
+    } catch (error) {
+      setShowErr(error.response?.data?.message || "Something went wrong");
+      console.error(error);
+    } finally {
+      wait.current = false;
+    }
+  };
 
 
 
@@ -40,30 +84,33 @@ const Signup = () => {
 
             <p className="mt-2 text-base text-gray-400">  Welcome back! Please enter your details.</p>
 
-            <form className="mt-8 md:mt-4 ">
+            <form onSubmit={handelRegistration} className="mt-8 md:mt-4 ">
 
               <label htmlFor='email' className="block text-sm font-medium text-gray-300">Name</label>
-              <input
+              <input onChange={handelChange}
                 type='name'
                 name='name'
+                value={inputData.name}
                 required
                 placeholder='Enter your name'
                 className="mt-1 w-full h-12 md:h-10  mb-3 px-4 py-2 rounded-lg bg-[#20242d69] text-gray-200 border border-gray-700 focus:border-2 focus:border-gray-600 focus:outline-none" />
 
 
               <label htmlFor='email' className="block text-sm font-medium text-gray-300">Email</label>
-              <input
+              <input onChange={handelChange}
                 type='email'
                 name='email'
+                value={inputData.email}
                 required
                 placeholder='example@gmail.com'
                 className="mt-1 w-full  h-12 md:h-10 mb-3 px-4 py-2 rounded-lg bg-[#20242d69] text-gray-200 border border-gray-700 focus:border-2 focus:border-gray-600 focus:outline-none" />
 
 
-              <label htmlFor='password' h-10 className="block text-sm font-medium text-gray-300">Password</label>
-              <input
+              <label htmlFor='password' className="block text-sm font-medium text-gray-300">Password</label>
+              <input onChange={handelChange}
                 type='password'
                 name='password'
+                value={inputData.password}
                 required
                 placeholder='•••••••••••••'
                 className="mt-1 w-full h-12 md:h-10  px-4 py-2 rounded-lg bg-[#20242d69] text-gray-200 border focus:border-2 border-gray-700 focus:border-gray-600 focus:outline-none"
@@ -90,13 +137,15 @@ const Signup = () => {
 
 
               {/* error message */}
-              <div className='my-5 p-1 pl-3 border-l-2  rounded-[6px] bg-[#ff8a4f17]  text-[#ff8a4fc8] text-sm' style={{ lineHeight: 1.4 }}>Please enter a password Lorem ipsum dolor sit amet consectetur adipisicing elit.cere?</div>
-
+              {
+                (!showErr == '') &&
+                <div className='mt-5 p-1 pl-3 border-l-2  rounded-[6px] bg-[#ff8a4f17]  text-[#ff8a4fc8] text-sm' style={{ lineHeight: 1.4 }}>{showErr}</div>
+              }
 
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full py-2 rounded-lg bg-gradient-to-b from-[#769dff] to-[#1a5cff] text-white font-bold  hover:bg-blue-700 transition"
+                className="w-full mt-5 py-2 rounded-lg bg-gradient-to-b from-[#769dff] to-[#1a5cff] text-white font-bold  hover:bg-blue-700 transition"
               >
                 Sign up
               </button>
@@ -155,7 +204,7 @@ const Signup = () => {
 
 
 
-      </section>
+      </section >
     </>
   )
 }

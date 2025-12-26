@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import { AppContext } from '../context/AppContext';
+import { toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -51,6 +52,7 @@ const Login = () => {
         setIsLogin(true);
         // console.log(userDetails);
         navigate('/');
+        toast.success('Login successful')
       }
 
     } catch (error) {
