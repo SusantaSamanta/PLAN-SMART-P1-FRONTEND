@@ -29,12 +29,12 @@ const Step2Education = () => {
             profileSetupForm.currentRole = '';
         }
         // console.log(profileSetupForm);
-        const { name, email, phone, location, highestQualification, university, graduationYear, hasExperience, experienceYears, currentRole, skills, cvFile } = profileSetupForm
+        const { name, email, phone, location, highestQualification, university, graduationYear, hasExperience, experienceYears, currentRole, skills } = profileSetupForm
 
         try {
             const { data } = await axios.post('/api/user/set-profile',
                 {
-                    profileData: { name, email, phone, location, highestQualification, university, graduationYear, hasExperience, experienceYears, currentRole, skills, cvFile }
+                    profileData: { name, email, phone, location, highestQualification, university, graduationYear, hasExperience, experienceYears, currentRole, skills }
                 },
                 {
                     headers: { 'Content-Type': "application/json" }

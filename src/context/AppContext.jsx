@@ -9,7 +9,7 @@ const AppContextProvider = (props) => {
     const [isLogin, setIsLogin] = useState(false);
     const [userDetails, setUserDetails] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-    const [profileSetupStep, setProfileSetupStep] = useState(1);
+    const [profileSetupStep, setProfileSetupStep] = useState(4);
     const [profileSetupForm, setProfileSetupForm] = useState({
         name: "",
         email: "",
@@ -22,9 +22,9 @@ const AppContextProvider = (props) => {
         experienceYears: "",
         currentRole: "",
         skills: [],
-        cvFile: '',
     });
     const [profilePicUrl, setProfilePicUrl] = useState('../src/assets/dummyProfile.jpg');
+    const [cvUrl, setCvUrl] = useState('../src/assets/dummyProfile.jpg');
 
 
 
@@ -35,6 +35,7 @@ const AppContextProvider = (props) => {
         profileSetupStep, setProfileSetupStep,
         profileSetupForm, setProfileSetupForm,
         profilePicUrl, setProfilePicUrl,
+        cvUrl, setCvUrl,
     }
 
 

@@ -9,8 +9,10 @@ const Sidebar = () => {
     return (
         <aside className="w-64 bg-[#10172a] p-5 flex flex-col border-r-1 border-gray-800">
             <h1 className="text-2xl font-bold text-blue-400 mb-10 ">
-                <img src="../src/assets/react.svg" alt="logo" className="w-6 h-6 mb-1 mr-2 hidden lg:inline-block hover:animate-[spin-slow_5s_linear_infinite]" />
-                VISION
+                <Link to={'/'}>
+                    <img src="../src/assets/react.svg" alt="logo" className="w-6 h-6 mb-1 mr-2 hidden lg:inline-block hover:animate-[spin-slow_5s_linear_infinite]" />
+                    VISION
+                </Link>
             </h1>
 
             <nav className="flex flex-col gap-3">

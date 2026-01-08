@@ -23,11 +23,11 @@ const Step1BasicInfo = () => {
     const handelSubmit = async (e) => {
         setProfileSetupStep(profileSetupStep + 1)
         e.preventDefault();
-        const { name, email, phone, location, highestQualification, university, graduationYear, hasExperience, experienceYears, currentRole, skills, cvFile } = profileSetupForm
+        const { name, email, phone, location, highestQualification, university, graduationYear, hasExperience, experienceYears, currentRole, skills } = profileSetupForm
         try {
             const { data } = await axios.post('/api/user/set-profile',
                 {
-                    profileData: { name, email, phone, location, highestQualification, university, graduationYear, hasExperience, experienceYears, currentRole, skills, cvFile }
+                    profileData: { name, email, phone, location, highestQualification, university, graduationYear, hasExperience, experienceYears, currentRole, skills }
                 },
                 {
                     headers: { 'Content-Type': "application/json" }

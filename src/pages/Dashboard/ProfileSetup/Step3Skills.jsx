@@ -42,12 +42,12 @@ const Step3Skills = () => {
         e.preventDefault();
         // console.log("Skills:", skillsObj);
         setProfileSetupStep(profileSetupStep + 1);
-        const { name, email, phone, location, highestQualification, university, graduationYear, hasExperience, experienceYears, currentRole, skills, cvFile } = profileSetupForm
+        const { name, email, phone, location, highestQualification, university, graduationYear, hasExperience, experienceYears, currentRole, skills } = profileSetupForm
 
         try {
             const { data } = await axios.post('/api/user/set-profile',
                 {
-                    profileData: { name, email, phone, location, highestQualification, university, graduationYear, hasExperience, experienceYears, currentRole, skills, cvFile }
+                    profileData: { name, email, phone, location, highestQualification, university, graduationYear, hasExperience, experienceYears, currentRole, skills }
                 },
                 {
                     headers: { 'Content-Type': "application/json" }
@@ -116,7 +116,9 @@ const Step3Skills = () => {
                     Back
                 </button>
 
-                <button className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-md transition" >
+                <button
+                    type="submit"
+                    className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-md transition" >
                     Next
                 </button>
             </div>
