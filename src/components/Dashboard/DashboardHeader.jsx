@@ -3,11 +3,13 @@ import React, { useState, useRef, useEffect, useContext } from "react";
 import { FaRegBell } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
+import HamburgerButton from "../HamburgerButton";
 
-const DashboardHeader = () => {
+const DashboardHeader = ({sideMenuOpen, setSideMenuOpen}) => {
 
     const { profilePicUrl, userDetails } = useContext(AppContext);
 
+    // const [sideMenuOpen, setSideMenuOpen] = useState(false);
 
     const location = useLocation();
     const [menuOpen, setMenuOpen] = useState(false);
@@ -16,9 +18,12 @@ const DashboardHeader = () => {
     const [notificationBar, setNotificationBar] = useState(false);
     const notificationRef = useRef(null);
 
+
+
+
     let page = "";
-    if (location.pathname.includes("/profile")) page = "Profile";
-    else if (location.pathname.includes("/profile-setup")) page = "Profile Setup";
+    if (location.pathname.includes("/profile-setup")) page = "Profile Setup";
+    else if (location.pathname.includes("/profile")) page = "My Profile";
     else if (location.pathname.includes("/jobs")) page = "Jobs";
     else page = "Hello, Susanta";
 
@@ -37,9 +42,15 @@ const DashboardHeader = () => {
     }, []);
 
     return (
-        <header className="py-2 md:px-8 px-4 flex items-center justify-between shadow-sm text-white sticky top-0 z-50 border-0 bg-[#0d1427]">
+        <header className="py-1 md:py-2 px-4 flex items-center justify-between shadow-sm text-white sticky top-0 z-50 border-0 bg-[#0d1427]">
             {/* Left: Dashboard Title */}
-            <h1 className="text-xl md:text-2xl font-semibold">{page}</h1>
+            <div className="flex">
+                <HamburgerButton
+                    isOpen={sideMenuOpen}
+                    onToggle={() => setSideMenuOpen(!sideMenuOpen)}
+                />
+                <h1 className="text-xl md:text-2xl font-semibold">{page}</h1>
+            </div>
 
             {/* Right: Notification + Profile */}
             <div className="flex items-center gap-4 relative" ref={menuRef}>

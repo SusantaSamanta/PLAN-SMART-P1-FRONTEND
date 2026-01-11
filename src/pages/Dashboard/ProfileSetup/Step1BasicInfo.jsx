@@ -1,12 +1,15 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../../context/AppContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Step1BasicInfo = () => {
 
     const {
         profileSetupStep, setProfileSetupStep,
         profileSetupForm, setProfileSetupForm,
+        isProfileComplete,
+        openModal, setOpenModal,
     } = useContext(AppContext);
 
 
@@ -21,7 +24,9 @@ const Step1BasicInfo = () => {
 
 
     const handelSubmit = async (e) => {
-        setProfileSetupStep(profileSetupStep + 1)
+
+        isProfileComplete ? '' : setProfileSetupStep(profileSetupStep + 1);
+
         e.preventDefault();
         const { name, email, phone, location, highestQualification, university, graduationYear, hasExperience, experienceYears, currentRole, skills } = profileSetupForm
         try {
@@ -41,6 +46,7 @@ const Step1BasicInfo = () => {
         } catch (error) {
             console.log(error);
         }
+        setOpenModal(false);
 
     }
 
@@ -90,7 +96,7 @@ const Step1BasicInfo = () => {
                 <button type="submit"
                     // onClick={() => setProfileSetupStep(profileSetupStep + 1)} 
                     className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-md transition" >
-                    Next
+                    {isProfileComplete ? 'Save' : 'Next'}
                 </button>
             </div>
         </form>

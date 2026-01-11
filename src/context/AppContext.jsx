@@ -9,7 +9,7 @@ const AppContextProvider = (props) => {
     const [isLogin, setIsLogin] = useState(false);
     const [userDetails, setUserDetails] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-    const [profileSetupStep, setProfileSetupStep] = useState(4);
+    const [profileSetupStep, setProfileSetupStep] = useState(1);
     const [profileSetupForm, setProfileSetupForm] = useState({
         name: "",
         email: "",
@@ -24,8 +24,9 @@ const AppContextProvider = (props) => {
         skills: [],
     });
     const [profilePicUrl, setProfilePicUrl] = useState('../src/assets/dummyProfile.jpg');
-    const [cvUrl, setCvUrl] = useState('../src/assets/dummyProfile.jpg');
-
+    const [userCvUrl, setUserCvUrl] = useState('');
+    const [isProfileComplete, setIsProfileComplete] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
 
 
     const variablesForSend = {
@@ -35,7 +36,9 @@ const AppContextProvider = (props) => {
         profileSetupStep, setProfileSetupStep,
         profileSetupForm, setProfileSetupForm,
         profilePicUrl, setProfilePicUrl,
-        cvUrl, setCvUrl,
+        userCvUrl, setUserCvUrl,
+        isProfileComplete, setIsProfileComplete,
+        openModal, setOpenModal,
     }
 
 
@@ -69,7 +72,9 @@ const AppContextProvider = (props) => {
             const res = await getProfileData();
             if (res) {
                 setProfileSetupForm(res.profileData);
-                setProfilePicUrl(res.profilePicUrl)
+                setProfilePicUrl(res.profilePicUrl);
+                setUserCvUrl(res.cvUrl);
+                setIsProfileComplete(res.fullyUpdated);
             }
         }
         callGetProfile()

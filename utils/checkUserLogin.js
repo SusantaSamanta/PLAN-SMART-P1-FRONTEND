@@ -21,9 +21,9 @@ export const getProfileData = async () => {
     try {
         const { data } = await axios.get('/api/user/get-profile');
         if (data.success) {
-            const { profileData, profilePicUrl } = data.userProfileData;
-            // console.log('my  : ', profilePicUrl);
-            return { profileData, profilePicUrl };
+            const { profileData, profilePicUrl, cvUrl, fullyUpdated } = data.userProfileData;
+            console.log('my  : ', fullyUpdated);
+            return { profileData, profilePicUrl, cvUrl, fullyUpdated };
         } else {
             return false;
         }

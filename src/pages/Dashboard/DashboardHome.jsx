@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AppContext } from '../../context/AppContext';
 
 const DashboardHome = () => {
-    const isProfileComplete = false; // later replace with user data
+    const {isProfileComplete, setIsProfileComplete} = useContext(AppContext);
 
     return (
         <div className="flex flex-col items-center justify-center h-[80vh] text-center text-white">

@@ -8,6 +8,8 @@ const Step2Education = () => {
     const {
         profileSetupStep, setProfileSetupStep,
         profileSetupForm, setProfileSetupForm,
+        isProfileComplete,
+        openModal, setOpenModal,
     } = useContext(AppContext);
 
 
@@ -22,7 +24,8 @@ const Step2Education = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setProfileSetupStep(profileSetupStep + 1);
+
+        isProfileComplete ? '' : setProfileSetupStep(profileSetupStep + 1)
 
         if (profileSetupForm.hasExperience === 'no') {
             profileSetupForm.experienceYears = '';
@@ -48,7 +51,7 @@ const Step2Education = () => {
         } catch (error) {
             console.log(error);
         }
-
+        setOpenModal(false);
     };
 
     return (
@@ -148,19 +151,20 @@ const Step2Education = () => {
             }
 
             {/* Buttons */}
-            <div className="flex justify-between mt-4">
-                <button
-                    onClick={() => setProfileSetupStep(profileSetupStep - 1)}
-                    className="bg-gray-600 hover:bg-gray-700 px-6 py-2 rounded-md transition"
-                >
-                    Back
-                </button>
+            <div className={`flex ${isProfileComplete ? 'justify-end' : 'justify-between'}  mt-4`}>
+                {!isProfileComplete &&
+                    <button
+                        onClick={() => setProfileSetupStep(profileSetupStep - 1)}
+                        className="bg-gray-600 hover:bg-gray-700 px-6 py-2 rounded-md transition"
+                    >
+                        Back
+                    </button>}
 
                 <button
                     type="submit"
                     className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-md transition"
                 >
-                    Next
+                    {isProfileComplete ? 'Save' : 'Next'}
                 </button>
             </div>
         </form>
