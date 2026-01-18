@@ -26,7 +26,7 @@ const Signup = () => {
     }
   }, [])
 
-  const handelChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setInputData((pre) => ({
       ...pre, [name]: value
@@ -35,7 +35,7 @@ const Signup = () => {
   }
 
   const wait = useRef(false)
-  const handelRegistration = async (e) => {
+  const handleRegistration = async (e) => {
     e.preventDefault();
     if (wait.current) return;
     wait.current = true;
@@ -84,10 +84,10 @@ const Signup = () => {
 
             <p className="mt-2 text-base text-gray-400">  Welcome back! Please enter your details.</p>
 
-            <form onSubmit={handelRegistration} className="mt-8 md:mt-4 ">
+            <form onSubmit={handleRegistration} className="mt-8 md:mt-4 ">
 
               <label htmlFor='email' className="block text-sm font-medium text-gray-300">Name</label>
-              <input onChange={handelChange}
+              <input onChange={handleChange}
                 type='name'
                 name='name'
                 value={inputData.name}
@@ -97,7 +97,7 @@ const Signup = () => {
 
 
               <label htmlFor='email' className="block text-sm font-medium text-gray-300">Email</label>
-              <input onChange={handelChange}
+              <input onChange={handleChange}
                 type='email'
                 name='email'
                 value={inputData.email}
@@ -107,7 +107,7 @@ const Signup = () => {
 
 
               <label htmlFor='password' className="block text-sm font-medium text-gray-300">Password</label>
-              <input onChange={handelChange}
+              <input onChange={handleChange}
                 type='password'
                 name='password'
                 value={inputData.password}

@@ -11,7 +11,7 @@ import { ToastContainer } from 'react-toastify'
 
 
 
-const navHidden = ['/login', '/signup', '/forgot-password', '/dashboard', '/dashboard/profile', '/dashboard/profile-setup'];
+const navHidden = ['/about', '/features', '/', '/contact'];
 
 
 const Layout = () => {
@@ -36,7 +36,7 @@ const Layout = () => {
 
 
       {
-        (!navHidden.includes(location.pathname)) &&
+        (navHidden.includes(location.pathname)) &&
         <Navbar />
       }
       <Routes>

@@ -39,11 +39,11 @@ const ForgotPassword = () => {
         }
     }, []);
 
-    const handelForHideError = () => {
+    const handleForHideError = () => {
         errorMessageForInput.current.style.display = 'none';
     }
 
-    const handelForgotPassword = (e) => {
+    const handleForgotPassword = (e) => {
         e.preventDefault();
         if (currentEmailValue.current.value == '') {
             errorMessageForInput.current.style.display = 'block';
@@ -116,7 +116,7 @@ const ForgotPassword = () => {
                                                 type='email'
                                                 name='email'
                                                 required
-                                                onFocus={() => handelForHideError()}
+                                                onFocus={() => handleForHideError()}
                                                 placeholder='example@gmail.com'
                                                 className=" w-full  h-12   pl-12 py-0 rounded-xl bg-transparent text-white text-base font-geist outline-none transition-all duration-300 border-2 border-white/30 focus:border-2  focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" />
 
@@ -141,7 +141,7 @@ const ForgotPassword = () => {
                                         <button
                                             // whileHover={{y: -2}}
                                             // transition={{ duration: 0.1, ease: 'easeOut' }}
-                                            onClick={(e) => handelForgotPassword(e)}
+                                            onClick={(e) => handleForgotPassword(e)}
                                             type="submit"
                                             // bg-glass-button
                                             className="w-full h-11 py-2 mt-4 rounded-lg bg-gradient-to-b from-[#769dff] to-[#1a5cff] text-white font-bold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"

@@ -65,7 +65,7 @@ const MobileMenu = ({ menuOpen, setMenuOpen }) => {
                                 }
                                 {
                                     isLogin &&
-                                    <button onClick={() => handelLogout()} className="text-sm font-medium hover:text-blue-300 transition border-0 w-full text-center">
+                                    <button onClick={() => handleLogout()} className="text-sm font-medium hover:text-blue-300 transition border-0 w-full text-center">
                                         Logout
                                     </button>
                                 }

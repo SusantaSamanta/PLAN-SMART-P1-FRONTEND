@@ -24,7 +24,8 @@ const DashboardHeader = ({sideMenuOpen, setSideMenuOpen}) => {
     let page = "";
     if (location.pathname.includes("/profile-setup")) page = "Profile Setup";
     else if (location.pathname.includes("/profile")) page = "My Profile";
-    else if (location.pathname.includes("/jobs")) page = "Jobs";
+    else if (location.pathname.includes("/job-profile")) page = "Job Profiles";
+    else if (location.pathname.includes("/job-interview")) page = "Job Interviews";
     else page = "Hello, Susanta";
 
     // 🧠 Close menu when clicking outside
@@ -49,7 +50,7 @@ const DashboardHeader = ({sideMenuOpen, setSideMenuOpen}) => {
                     isOpen={sideMenuOpen}
                     onToggle={() => setSideMenuOpen(!sideMenuOpen)}
                 />
-                <h1 className="text-xl md:text-2xl font-semibold">{page}</h1>
+                <h1 className="text-lg md:text-2xl font-semibold">{page}</h1>
             </div>
 
             {/* Right: Notification + Profile */}

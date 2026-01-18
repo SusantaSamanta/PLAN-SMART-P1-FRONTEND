@@ -22,7 +22,7 @@ const DashboardLayout = ({ children }) => {
 
                     <DashboardHeader sideMenuOpen={sideMenuOpen} setSideMenuOpen={setSideMenuOpen} />
                     {/* Page Content */}
-                    <main className=" py-3 md:px-8 px-4 flex-1 overflow-y-auto border-0 border-gray-800">{children}</main>
+                    <main className=" p-4  flex-1 overflow-y-auto border-0 border-gray-800">{children}</main>
                 </div>
             </div>
         </>

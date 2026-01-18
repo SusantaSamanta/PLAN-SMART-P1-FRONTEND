@@ -36,7 +36,7 @@ const Navbar = () => {
 
 
 
-  const handelLogout = async () => {
+  const handleLogout = async () => {
     try {
       const { data } = await axios.post('/api/auth/logout');
       console.log(data);
@@ -115,7 +115,7 @@ const Navbar = () => {
               }
               {
                 isLogin &&
-                <button onClick={() => handelLogout()} className="text-sm font-medium hover:text-blue-300 transition">
+                <button onClick={() => handleLogout()} className="text-sm font-medium hover:text-blue-300 transition">
                   Logout
                 </button>
               }

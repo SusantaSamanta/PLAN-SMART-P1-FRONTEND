@@ -19,7 +19,7 @@ const NewPasswordInput = () => {
 
 
 
-    const handelNewPWInput = (e) => {
+    const handleNewPWInput = (e) => {
         // e.preventDefault();
     }
 
@@ -139,7 +139,7 @@ const NewPasswordInput = () => {
 
 
                     <button
-                        onClick={(e) => handelNewPWInput(e)}
+                        onClick={(e) => handleNewPWInput(e)}
                         type="submit"
                         className="w-full py-2 mt-4 rounded-lg bg-gradient-to-b from-[#769dff] to-[#1a5cff] text-white  hover:bg-blue-700 transition font-bold"
                     >

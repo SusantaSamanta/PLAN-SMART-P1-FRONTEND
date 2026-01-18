@@ -23,7 +23,7 @@ const Step1BasicInfo = () => {
 
 
 
-    const handelSubmit = async (e) => {
+    const handleSubmit = async (e) => {
 
         isProfileComplete ? '' : setProfileSetupStep(profileSetupStep + 1);
 
@@ -55,7 +55,7 @@ const Step1BasicInfo = () => {
 
 
     return (
-        <form onSubmit={handelSubmit} className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <input
                 type="text"
                 name="name"

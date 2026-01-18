@@ -59,7 +59,7 @@ const ResetPasswordOtpInput = ({ setShowCurrentPage, email, length = 6, }) => {
 
 
 
-    const handelNewPasswordInput = (e) => {
+    const handleNewPasswordInput = (e) => {
         e.preventDefault();
         setShowCurrentPage('EnterNewPassword');
     }
@@ -111,7 +111,7 @@ const ResetPasswordOtpInput = ({ setShowCurrentPage, email, length = 6, }) => {
 
 
                     <button
-                        onClick={(e) => handelNewPasswordInput(e)}
+                        onClick={(e) => handleNewPasswordInput(e)}
                         type="submit"
                         className="w-full py-2 mt-4 rounded-lg bg-gradient-to-b from-[#769dff] to-[#1a5cff] text-white  hover:bg-blue-700 transition font-bold"
                     >

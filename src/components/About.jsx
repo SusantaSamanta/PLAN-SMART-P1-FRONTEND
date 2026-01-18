@@ -18,7 +18,7 @@ const About = () => {
                 className="max-w-3xl text-center my-8 border-0"
             >
                 <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                    About <span className="text-blue-500">PlanSmart</span>
+                    About <span className="text-blue-500">Future Vision</span>
                 </h2>
                 <p className="text-gray-400 text-lg leading-relaxed">
                     We're on a mission to revolutionize the hiring landscape. Our

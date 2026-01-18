@@ -25,7 +25,7 @@ const MobileNavbar = () => {
 
 
 
-    const handelMenuOpen = () => {
+    const handleMenuOpen = () => {
 
     }
 

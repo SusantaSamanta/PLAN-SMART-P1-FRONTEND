@@ -1,0 +1,48 @@
+Web Development
+
+	Frontend (React, HTML, CSS)
+
+	Backend (Node, Java, APIs)
+
+Data Analytics
+
+	SQL, Excel, Power BI
+
+	Business/Data Analyst roles
+
+Data Science
+
+	Python, ML, Statistics
+
+Artificial Intelligence / ML
+
+	ML, Deep Learning, NLP
+
+	Computer Vision
+
+Software Engineering
+
+	Core programming roles
+
+	DSA + System Design
+
+🔹 Supporting Tech Fields (Optional)
+
+DevOps / Cloud
+
+	AWS, Docker, CI/CD
+
+Mobile Development
+
+	Android, iOS, Flutter
+
+Business & Management
+
+	Business Analyst
+
+	Product roles
+
+
+
+
+jobType : ["Full Time", "Internship", "Trainee", "Contract"]

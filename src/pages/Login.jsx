@@ -29,7 +29,7 @@ const Login = () => {
 
 
   const loginLoading = useRef(false);
-  const handelLogin = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     if (loginLoading.current) return;
@@ -94,7 +94,7 @@ const Login = () => {
             <p className="mt-2 text-base text-gray-200">  Welcome back! Please enter your details.</p>
 
             <form
-              onSubmit={(e) => handelLogin(e)}
+              onSubmit={(e) => handleLogin(e)}
               className="mt-8 md:mt-4 "
             >
 

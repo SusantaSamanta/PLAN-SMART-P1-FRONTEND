@@ -1,14 +1,19 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-// import { Home, User, Briefcase, Mic, FileText, BarChart2, Settings } from "lucide-react";
+import { HiHome } from "react-icons/hi2";
+import { FaUser } from "react-icons/fa6";
+import { BsFillBriefcaseFill } from "react-icons/bs";
+import { AiOutlineLaptop } from "react-icons/ai";
+import { BsFillLaptopFill } from "react-icons/bs";
+
+
+
 
 const Sidebar = ({ sideMenuOpen, setSideMenuOpen }) => {
     const location = useLocation();
     const active = (path) => location.pathname === path ? "bg-blue-600 hover:bg-blue-600" : "hover:bg-[#1c2338]";
 
-    const handelMenu = () => {
-        setSideMenuOpen(false);
-    }
+
 
 
     return (
@@ -23,11 +28,11 @@ const Sidebar = ({ sideMenuOpen, setSideMenuOpen }) => {
 
             <div className="h-screen flex flex-col justify-between border-0"> 
                 <nav className="flex flex-col gap-3 mt-15 lg:mt-0">
-                    <Link to="/dashboard" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard')}`} onClick={() =>{ setSideMenuOpen(false)}}>Home</Link>
-                    <Link to="/dashboard/profile" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/profile')}`} onClick={() =>{ setSideMenuOpen(false)}}>My Profile</Link>
-                    <Link to="/dashboard/jobs" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/jobs')}`} onClick={() =>{ setSideMenuOpen(false)}}>Job Matches</Link>
-                    {/* <Link to="/dashboard/interview" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/interview')}`}>AI Interview</Link>
-                <Link to="/dashboard/applications" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/applications')}`}>Applications</Link>
+                    <Link to="/dashboard" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard')}`} onClick={() =>{ setSideMenuOpen(false)}}><HiHome />Home</Link>
+                    <Link to="/dashboard/profile" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/profile')}`} onClick={() =>{ setSideMenuOpen(false)}}><FaUser />My Profile</Link>
+                    <Link to="/dashboard/job-profile" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/job-profile')}`} onClick={() =>{ setSideMenuOpen(false)}}><BsFillBriefcaseFill />Job Profiles</Link>
+                    <Link to="/dashboard/job-interview" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/job-interview')}`}><BsFillLaptopFill />AI Interview</Link>
+                {/* <Link to="/dashboard/applications" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/applications')}`}>Applications</Link>
                 <Link to="/dashboard/analytics" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/analytics')}`}>Analytics</Link>
                 <Link to="/dashboard/settings" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/settings')}`}>Settings</Link> */}
                 </nav>
