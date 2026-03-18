@@ -11,11 +11,10 @@ import DashboardAiInterview from '../pages/Dashboard/DashboardAiInterview'
 
 const DashboardRoutes = () => {
   const { isProfileComplete } = useContext(AppContext)
-
   return (
     <>
-      <DashboardLayout>
-        <DashboardContextProvider>
+      <DashboardContextProvider>
+        <DashboardLayout>
           <Routes>
 
             <Route path="/" element={<DashboardHome />} />
@@ -32,10 +31,10 @@ const DashboardRoutes = () => {
             <Route path="/job-profile" element={<DashboardJobProfiles />} />
             <Route path="/job-interview" element={<DashboardAiInterview />} />
           </Routes>
-        </DashboardContextProvider>
 
 
-      </DashboardLayout>
+        </DashboardLayout>
+      </DashboardContextProvider>
     </>
   )
 }

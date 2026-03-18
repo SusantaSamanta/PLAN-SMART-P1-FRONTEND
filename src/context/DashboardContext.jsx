@@ -15,6 +15,8 @@ const DashboardContextProvider = ({ children }) => {
   ]);
   const [reappliedJobs, setReappliedJobs] = useState([]);
   const [pendingInterviews, setPendingInterviews] = useState([]);
+  const [interviewPageOpen, setInterviewPageOpen] = useState(false); 
+
 
 
 
@@ -32,8 +34,8 @@ const DashboardContextProvider = ({ children }) => {
     const appliedJob = reappliedJobs.find(
       (job) => String(job.job) === String(jobId)
     );
-    if (appliedJob) return ["Reapply", true];
-    else return ["Apply", true]
+    if (appliedJob) return ["Reapply", true]; // present in reapplied arr
+    else return ["Apply", true] // mean not applied before so not present in reapplied arr
   }
 
   const checkIsJobApplied = (jobId) => {
@@ -42,8 +44,8 @@ const DashboardContextProvider = ({ children }) => {
       (job) => String(job.job) === String(jobId)
     );
     // if (!appliedJob) return ["Apply", true];
-    if (!appliedJob) return checkForReapply(jobId);
-    else return [" Already Applied", false]
+    if (!appliedJob) return checkForReapply(jobId); // not present in applied job and check it for reapply s
+    else return [" Already Applied", false] // present in already applied jobs arr
   };
 
 
@@ -53,6 +55,7 @@ const DashboardContextProvider = ({ children }) => {
     reappliedJobs, setReappliedJobs,
     checkIsJobApplied,
     pendingInterviews, setPendingInterviews,
+    interviewPageOpen, setInterviewPageOpen, 
   }
 
 

@@ -46,3 +46,27 @@ Business & Management
 
 
 jobType : ["Full Time", "Internship", "Trainee", "Contract"]
+
+
+
+////////////////////////// ⭐ How use Redux ⭐  ///////////////////////
+
+Step 1: npm i redux
+Step 2: npm i npm i @reduxjs/toolkit
+
+Step 3: Create a folder called 'store'
+		            	   inside ''  another folder 'slice'
+						              file 
+
+
+Step 4: Create a folder called 'store'
+
+
+
+
+
+
+
+
+
+

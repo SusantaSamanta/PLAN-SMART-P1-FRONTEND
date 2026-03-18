@@ -1,62 +1,16 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { DashboardContext } from '../../context/DashboardContext';
 import { RiRobot2Fill } from "react-icons/ri";
 import { fetchAllPendingInterviews } from '../../../utils/dashboardDataFetch';
+import axios from 'axios';
+import InterviewInstructionModal from './InterviewInstructionModal';
+import Interview from './Interview';
 
 const PendingInterviews = () => {
     const { pendingInterviews, setPendingInterviews } = useContext(DashboardContext);
 
-    // 🔹 Dummy data (replace with API)
-    const pending1 = [
-        {
-            id: 1,
-            title: "Junior AI Engineer",
-            company: "Amazon.ai",
-            attempts: 1,
-            mode: "AI Interview",
-            difficulty: "Easy",
-            duration: "20 min",
-        },
-        {
-            id: 2,
-            title: "ML Engineer",
-            company: "Google AI",
-            attempts: 2,
-            mode: "AI Interview",
-            difficulty: "Hard",
-            duration: "30 min",
-        },
-    ];
-    const pending = [
-        {
-            id: 1,
-            sector: "Web Development",
-            role: "Freshers",
-            title: "Junior Associate Web Developer",
-            company: "Vara Infrovate",
-            companyLogo:
-                "https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_(2019).png",
-            language: "English",
-            attempts: 1,
-            mode: "AI Interview",
-            difficulty: "Easy",
-            duration: "20 min",
-        },
-        {
-            id: 2,
-            sector: "Web Development",
-            role: "Freshers",
-            title: "Junior Associate Web Developer",
-            company: "Vara Infrovate",
-            companyLogo:
-                "https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_(2019).png",
-            language: "English",
-            attempts: 1,
-            mode: "AI Interview",
-            difficulty: "Easy",
-            duration: "20 min",
-        },
-    ];
+    const [openInterviewInstruction, setOpenInterviewInstruction] = useState(false);
+    const currentApplicationId = useRef(null);
 
 
     useEffect(() => {
@@ -69,6 +23,12 @@ const PendingInterviews = () => {
 
 
 
+    const handleShowInstruction = (applicationId) => {
+        currentApplicationId.current = applicationId;
+        setOpenInterviewInstruction(true);
+    }
+
+    // console.log(pendingInterviews)
 
 
     return (
@@ -76,13 +36,13 @@ const PendingInterviews = () => {
             {pendingInterviews.length === 0 ? (
                 <div className="flex justify-center items-center py-5">
                     <span className="text-sm text-gray-400 tracking-wide">
-                        Loading Interviews…
+                        No Pending Interviews.
                     </span>
                 </div>
             ) : (
                 pendingInterviews.map((item) => (
                     <div
-                        key={item.id}
+                        key={item.applicationId}
                         className="bg-[#121b33] p-3 md:p-5 rounded-xl border border-gray-700 flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
                     >
                         {/* LEFT: Logo + Info */}
@@ -136,14 +96,14 @@ const PendingInterviews = () => {
                                                     ? "bg-yellow-600/20 text-yellow-400"
                                                     : "bg-red-600/20 text-red-400"
                                             }
-                                        `}
+                                                `}
                                     >
                                         {item.role == 'Freshers' ? <span>Easy</span> : <span>Medium</span>}
                                     </span>
 
                                     {/* <span className="text-xs bg-purple-600/20 text-purple-400 px-2 py-1 rounded">
                                         {item.duration}
-                                    </span> */}
+                                        </span> */}
 
                                     <span className="text-xs bg-orange-600/20 text-orange-400 px-2 py-1 rounded">
                                         {item.language}
@@ -156,15 +116,22 @@ const PendingInterviews = () => {
                             </div>
                         </div>
 
-                        {/* RIGHT: Action */}
-                        {/* <div className='border-0 flex justify-end'> */}
-                        <button className="self-start md:self-center px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-md text-sm font-semibold cursor-pointer">
+
+                        <button onClick={() => handleShowInstruction(item.applicationId)}
+                            className="self-start md:self-center px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-md text-sm font-semibold cursor-pointer">
                             Start Interview
                         </button>
-                        {/* </div> */}
+
                     </div>
                 ))
             )}
+            {/* Before start interview some instructions and stat interview */}
+            {openInterviewInstruction &&
+                <InterviewInstructionModal
+                    setOpenInterviewInstruction={setOpenInterviewInstruction}
+                    applicationId={currentApplicationId.current}
+                />
+            }
         </div>
     );
 };

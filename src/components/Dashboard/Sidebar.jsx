@@ -31,7 +31,7 @@ const Sidebar = ({ sideMenuOpen, setSideMenuOpen }) => {
                     <Link to="/dashboard" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard')}`} onClick={() =>{ setSideMenuOpen(false)}}><HiHome />Home</Link>
                     <Link to="/dashboard/profile" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/profile')}`} onClick={() =>{ setSideMenuOpen(false)}}><FaUser />My Profile</Link>
                     <Link to="/dashboard/job-profile" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/job-profile')}`} onClick={() =>{ setSideMenuOpen(false)}}><BsFillBriefcaseFill />Job Profiles</Link>
-                    <Link to="/dashboard/job-interview" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/job-interview')}`}><BsFillLaptopFill />AI Interview</Link>
+                    <Link to="/dashboard/job-interview" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/job-interview')}`} onClick={() =>{ setSideMenuOpen(false)}}><BsFillLaptopFill />AI Interview</Link>
                 {/* <Link to="/dashboard/applications" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/applications')}`}>Applications</Link>
                 <Link to="/dashboard/analytics" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/analytics')}`}>Analytics</Link>
                 <Link to="/dashboard/settings" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/settings')}`}>Settings</Link> */}

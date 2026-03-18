@@ -1,0 +1,280 @@
+Q1. In which scenario would a deadlock definitely occur between Process A and Process B?
+Answer: Process A holds Resource 1, Process B holds Resource 2, A waits for R2, B waits for R1
+
+Q2. The average of 35 consecutive even numbers is 44. Find the smallest number.
+Answer: 10
+
+Q3. Fill in the blank:
+His sudden resignation came as a ________ to everyone in the office.
+Answer: surprise
+
+Q4. Which of the following number will replace the question mark?
+77, 77, 79, 237, 241, ?
+Answer: 1205
+
+Q5. The average of 13 numbers is 42. If a 14th number is included, then the average becomes 44. What is the 14th number?
+Answer: 70
+
+Q6. QTWA is related to ZCFJ in a certain way based on the English alphabetical order. In the same way, MKBZ is related to VTKI. To which of the following is EYCM related, following the same logic?
+Answer: NHLV
+
+Q7. Identify the segment with an error:
+The team / are practicing / for the final match / tomorrow.
+Answer: are practicing
+
+Q8. Which cloud model is used by a single organization?
+Answer: Private
+
+Q9. Fill in the blank with the correct present perfect form:
+I ________ (read) three books this month.
+Answer: have read
+
+Q10. Eight persons P, Q, R, S, T, U, V and W sit around a circular table facing the centre. P sits second to the right of Q. R sits opposite P. S sits immediately to the left of R. V is not a neighbour of Q. Who sits opposite V?
+Answer: S
+
+Q11. Which of the following numbers will completely divide 781 + 782 + 783?
+Answer: 399
+
+Q12. Third Normal Form (3NF) eliminates which type of dependency?
+Answer: Transitive dependencies
+
+Q13. If a² + b² + c² = 160 and a + b + c = 16 then find the value of ab + bc + ca.
+Answer: 48
+
+Q14. Reeta is standing facing south-east. First, she turns 135º clockwise. After that, she turns 90º anticlockwise. Then she turns 45º clockwise, followed by a 135º anticlockwise turn. In which direction is she facing now?
+Answer: East
+
+Q15. Choose the antonym of “CONCISE”.
+Answer: Verbose
+
+Q16. What is the primary purpose of the .bind() method on functions?
+Answer: Creates a new function with fixed this value
+
+Q17. In an examination, 92% of the students passed and 480 students failed. If so, how many students appeared in the examination?
+Answer: 6000
+
+Q18. What will be the output?
+i = 0
+while i < 3:
+i += 1
+print(i)
+Answer: 3
+
+Q19. Select the synonym of the underlined word. The arduous journey through the mountains tested their endurance.
+Answer: difficult
+
+Q20. 'Awl' is related to 'Cobbler' and 'Chisel' is related to 'Sculptor' in the same way as 'Anvil' is related to '_____'.
+Answer: Blacksmith
+
+Q21. In the OSI model, which layer is responsible for routing packets across different networks using IP addresses?
+Answer: Network Layer (Layer 3)
+
+Q22. Six people A, B, C, D, E and F have different numbers of books. A has more books than only B. D has more books than C but fewer than E. F has fewer books than D but more than B. Who has the maximum number of books?
+Answer: E
+
+Q23. Select the most appropriate word to fill in the blank:
+He always tries to ________ his mistakes instead of admitting them.
+Answer: justify
+
+Q24. The average of 36, 28, 43, 56, 74, 65, 12 and x is 45. What is the value of x?
+Answer: 46
+
+Q25. The product of two positive numbers is 1344 and their ratio is 7 : 12. The smaller of these numbers is:
+Answer: 28
+
+Q26. Which HTML5 attribute makes an input field mandatory before form submission?
+Answer: required
+
+Q27. Choose the correct option: She ___ the report before the manager arrived.
+Answer: had completed
+
+Q28. The ratio of incomes of A and B is 3:5 and the ratio of their expenditures is 2:3. If both save ₹400 each, what is the income of B?
+Answer: 3000
+
+Q29. What will be the output?
+x = [1, 2, 3]
+y = x[:]
+x.append(4)
+print(y)
+Answer: [1, 2, 3]
+
+Q30. A can do a work in 20 days, B in 30 days, and C in 60 days. All start together. After 5 days A leaves, and after another 5 days B leaves. In how many days will the entire work be completed?
+Answer: 15
+
+Q31. If 25% discount is given on an article, then there will be a loss of 15%. If the article is sold at its marked price, then what will the profit percentage be?
+Answer: 13.33%
+
+Q32. Select the most appropriate option that can substitute the underlined segment. She has been studying for her exams since morning.
+Answer: None of above
+
+Q33. In an office 5/8 of the total number of employees are males and the rest are females. 2/5 of the number of males are non-technical workers while 2/3 of the number of females are technical workers. What fraction of the total number of employees are technical workers?
+Answer: 5/8
+
+Q34. Select the synonym of ‘Benevolent’:
+Answer: kind
+
+Q35. Six boys Sumit, Gopal, Honey, Ishaan, Jatin and Lalit are sitting around a circular table facing towards centre. Ishaan is the third to the left of Sumit, Jatin and Honey are the immediate neighbours of Ishaan. Lalit is to the immediate right of Jatin. Who is sitting to the immediate left of Ishaan?
+Answer: Honey
+
+Q36. Output? Max consecutive 1s with k=1 flips in [1,0,0,1,1]
+Answer: 4
+
+Q37. Predict the output or error for the following program:
+printf("%d", printf("%d", printf("A")));
+Answer: A11
+
+Q38. Pointing to a man in a photograph, Rita said, “He is the only son of my grandfather’s only daughter.” How is the man related to Rita?
+Answer: Brother
+
+Q39. Fill in the blank:
+We must ________ wasteful habits to conserve resources.
+Answer: abandon
+
+Q40. For what value of x is the seven digit number 46393x8 divisible by 11?
+Answer: 3
+
+Q41. Gmail is an example of:
+Answer: SaaS
+
+Q42. Choose the word that is closest in meaning to “OBSCURE”:
+Answer: Vague
+
+Q43. A person's salary was increased by 50% and subsequently decreased by 50%. How much percentage does he loss or gain?
+Answer: Loss of 25%
+
+Q44. Manyak is the son of Arvind. Manyak and Kashyap are brothers. Durga is the mother of Kashyap. Sanhit is the brother of Arvind. Hruday is the son of Sanhit. How is Hruday related to Kashyap?
+Answer: Cousin
+
+Q45. With interest compounded annually, a sum becomes 3 times itself in 13 years at a certain rate of annual interest. In how many years will the same amount become 9 times itself at the same rate?
+Answer: 26 Years
+
+Q46. Choose the synonym of “ASTUTE”.
+Answer: Clever
+
+Q47. Second Normal Form (2NF) requires that a table must:
+Answer: Be in 1NF and have no partial dependencies on composite keys
+
+Q48. An article is sold at a profit of 20%. If the cost price were reduced by 10% and the selling price increased by ₹54, the profit would be 50%. What is the original cost price?
+Answer: 400
+
+Q49. How do you select an element that has both id="header" and class="dark"?
+Answer: #header.dark
+
+Q50. If the cost price is 94% of the selling price, then what is the profit percentage?
+Answer: 6.40%
+
+Q51. Choose the correctly spelt word:
+Answer: Embarrass
+
+Q52. The average age of 10 people is 40 years. When a person aged 60 leaves and a new person joins, the average decreases by 2 years. What is the age of the new person?
+Answer: 38
+
+Q53. Eight people A, B, C, D, E, F, G and H are seated in a straight line facing north. A sits third to the left of D. B sits immediately to the right of A. E sits second to the right of B. G sits at one of the extreme ends. C is not an immediate neighbour of D. Who sits immediately to the left of E?
+Answer: F
+
+Q54. What is the purpose of virtual memory in modern operating systems?
+Answer: To provide each process with an illusion of larger, isolated address space
+
+Q55. Identify the segment with a grammatical error:
+One of my friends / have gone / to London / for higher studies.
+Answer: have gone
+
+Q56. A person invested Rs 12000 on simple interest for 7 years to obtain Rs 20400. What was the rate of interest?
+Answer: 10%
+
+Q57. If the price of petrol increased by 7%, then by what percentage should the consumption be decreased so that expenditure remains unchanged?
+Answer: 6*58/107 %
+
+Q58. What is the primary purpose of creating an index on a column in SQL?
+Answer: To speed up data retrieval by reducing disk I/O operations and search time
+
+Q59. Manoj starts from his home and drives 4 km towards the north. He then takes a left turn, drives 5 km, turns right, drives 9 km, takes a left turn drives 3 km, turns left and drives 5 km to reach his office. In which direction is the office with respect to his home?
+Answer: North-west
+
+Q60. Choose the correct sentence.
+Answer: A group of students is waiting outside.
+
+Q61. In constructor overloading, what must be different between overloaded constructors?
+Answer: Parameter list (number, type, or order)
+
+Q62. Choose the incorrectly spelt word:
+Answer: ocurence
+
+Q63. Bicycle : Pedal :: Car : ?
+Answer: Wheel
+
+Q64. A bag contains coins of Rs.1, Rs.2 and Rs.5 in the ratio 5:10:6. Total amount is Rs.275. How many Rs.5 coins are there?
+Answer: 30
+
+Q65. Which access modifier allows access within the same package and subclasses outside the package?
+Answer: protected
+
+Q66. In what ratio must a grocer mix rice costing Rs.128 and Rs.143 to get mixture price Rs.137.75?
+Answer: 7 : 13
+
+Q67. Salary increased by 30%, then reduced so final salary is 4% more than original. What is the percentage reduction?
+Answer: 20.77%
+
+Q68. Identify the error:
+She / is more smarter / than her brother.
+Answer: is more smarter
+
+Q69. Output?
+for i in range(3):
+if i == 1:
+continue
+print(i)
+Answer: 0 2
+
+Q70. Three partners shared profit in ratio 8:7:5. Investment time 7,8,14 months. Ratio of capitals?
+Answer: 64:49:20
+
+Q71. Seven persons K, L, M, N, O, P and Q sitting in a row facing north. Who sits at extreme left?
+Answer: O
+
+Q72. Synonym of ‘Candid’:
+Answer: frank
+
+Q73. Predict output:
+int a=10;
+printf("%d", a==10 && a++==10);
+Answer: 1
+
+Q74. When a number is increased by 216, it becomes 140% of itself. What is the number?
+Answer: 540
+
+Q75. Identify incorrectly spelt word:
+"The goverment announced new schemes for farmers."
+Answer: goverment
+
+Q76. Which Linux command creates a symbolic link?
+Answer: ln -s source target
+
+Q77. Ratio of principal and amount for one year is 5:6. Find rate of simple interest.
+Answer: 20%
+
+Q78. Which part has a spelling error?
+The principal gave a speech on discipline and responsibility.
+Answer: No error
+
+Q79. Output of code?
+a=[2,1,5,1,3,2], k=3 max sum window?
+Answer: 9
+
+Q80. Ratio of tanks to planes was 5:3. After war 1000 tanks and 800 planes destroyed. Ratio became 2:1. Tanks after war?
+Answer: 2000
+
+Q81. Hari, Kamal and Lalit contested election with 6050 votes. Lalit got 8%. Kamal got 42% more than Hari+Lalit. Votes of Hari?
+Answer: 2016
+
+Q82. Which document is created during Requirement Analysis?
+Answer: SRS
+
+Q83. Which is NOT a phase of SDLC?
+Answer: Marketing
+
+Q84. Hybrid cloud is a combination of:
+Answer: Public + Private
+
+Q85. Which Windows cmd command copies a file to another location without deleting the original?
+Answer: copy file.txt C:\backup
