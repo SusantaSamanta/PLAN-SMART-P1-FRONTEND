@@ -16,7 +16,7 @@ const Login = () => {
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const navigate = useNavigate();
-
+  const [isFormSubmitting, setIsFormSubmitting] = useState(false);
 
   const formHeightInMobile = useRef(null);
   useEffect(() => {
@@ -28,14 +28,12 @@ const Login = () => {
 
 
 
-  const loginLoading = useRef(false);
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    if (loginLoading.current) return;
-    loginLoading.current = true;
-    console.log(userEmail);
-
+    if (isFormSubmitting) {
+      return;
+    }
+    setIsFormSubmitting(true);
     try {
       const response = await axios.post('/api/auth/login',
         {
@@ -63,8 +61,9 @@ const Login = () => {
       }
       else
         console.log(error);
+    } finally {
+      setIsFormSubmitting(false);
     }
-    loginLoading.current = false;
   }
 
 
@@ -133,16 +132,16 @@ const Login = () => {
 
 
 
-              <div className="flex mt-4 mb-6 items-center justify-between text-sm ">
+              {/* <div className="flex mt-4 mb-6 items-center justify-between text-sm ">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
                     className="peer hidden"
                     onChange={(e) => setRemember(e.target.checked)}
                   />
-                  {/* Custom checkbox */}
+                
                   <span className="w-4 h-4 flex items-center justify-center rounded border border-gray-500 peer-checked:bg-blue-600 peer-checked:border-blue-500 transition">
-                    {/* Tick mark when checked */}
+                   
                     <svg
                       className="hidden peer-checked:block w-3 h-3 text-white"
                       fill="none"
@@ -159,16 +158,16 @@ const Login = () => {
                 <Link to={"/forgot-password"} className="text-blue-500 hover:underline">
                   Forgot password
                 </Link>
-              </div>
+              </div> */}
 
 
 
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full py-2 rounded-lg bg-gradient-to-b from-[#769dff] to-[#1a5cff] text-white  hover:bg-blue-700 transition font-bold"
+                className="w-full mt-8 py-2 rounded-lg bg-gradient-to-b from-[#769dff] to-[#1a5cff] text-white  hover:bg-blue-700 transition font-bold"
               >
-                Login
+                {isFormSubmitting ? "Loading..." : "Login"}
               </button>
 
 
@@ -178,21 +177,21 @@ const Login = () => {
 
 
             {/* OR Divider */}
-            <div className="h-10 my-2 md:my-1 flex items-center">
+            {/* <div className="h-10 my-2 md:my-1 flex items-center">
               <div className="flex-grow border-t border-gray-700"></div>
               <span className="mx-3 text-gray-500 text-sm">OR</span>
               <div className="flex-grow border-t border-gray-700"></div>
-            </div>
+            </div> */}
 
 
             {/* Social Logins */}
             <div className="grid grid-cols-1 border-0 gap-4">
-              <button className="flex items-center justify-center w-full h-10 border-b-1 border-r-1 border-gray-700 rounded-lg bg-gray-800 hover:bg-gray-700">
+              {/* <button className="flex items-center justify-center w-full h-10 border-b-1 border-r-1 border-gray-700 rounded-lg bg-gray-800 hover:bg-gray-700">
                 <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-6 h-6" />
                 <span className='ml-2 font-bold'>
                   Continue with Google
                 </span>
-              </button>
+              </button> */}
               {/* <button className="flex items-center justify-center w-full h-10 border-b-1 border-r-1 border-gray-700 rounded-lg bg-gray-800 hover:bg-gray-700">
                 <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" className="w-6 h-6" />
               </button>

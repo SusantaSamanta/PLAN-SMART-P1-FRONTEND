@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AppContext } from '../../context/AppContext';
 
 const DashboardHome = () => {
-    const {isProfileComplete, setIsProfileComplete} = useContext(AppContext);
+    const { isProfileComplete, setIsProfileComplete } = useContext(AppContext);
 
     return (
         <div className="flex flex-col items-center justify-center h-[80vh] text-center text-white">
@@ -24,7 +24,9 @@ const DashboardHome = () => {
                     </Link>
                 </>
             ) : (
-                <h2 className="text-2xl font-semibold">Welcome back, Susanta!</h2>
+                <>
+                    <h2 className="text-2xl font-semibold">Welcome back, Susanta!</h2>
+                </>
             )}
         </div>
     );

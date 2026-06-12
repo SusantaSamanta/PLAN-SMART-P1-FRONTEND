@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HiHome } from "react-icons/hi2";
 import { FaUser } from "react-icons/fa6";
@@ -14,6 +14,19 @@ const Sidebar = ({ sideMenuOpen, setSideMenuOpen }) => {
     const active = (path) => location.pathname === path ? "bg-blue-600 hover:bg-blue-600" : "hover:bg-[#1c2338]";
 
 
+    // const [strLen, setStrLen] = useState(0);
+
+    // let i = useRef(100);
+
+    // const str = ['more', 'clean', 'and', 'easy', 'English', 'language', 'to', 'understand', 'english', 'properly'];
+    // let ind = useRef(0);
+
+
+    // setTimeout(() => {
+    //     console.log(str[ind.current++]);
+    //     i.current += 1000;   
+    // }, i.current);
+
 
 
     return (
@@ -26,13 +39,13 @@ const Sidebar = ({ sideMenuOpen, setSideMenuOpen }) => {
             </h1>
 
 
-            <div className="h-screen flex flex-col justify-between border-0"> 
+            <div className="h-screen flex flex-col justify-between border-0">
                 <nav className="flex flex-col gap-3 mt-15 lg:mt-0">
-                    <Link to="/dashboard" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard')}`} onClick={() =>{ setSideMenuOpen(false)}}><HiHome />Home</Link>
-                    <Link to="/dashboard/profile" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/profile')}`} onClick={() =>{ setSideMenuOpen(false)}}><FaUser />My Profile</Link>
-                    <Link to="/dashboard/job-profile" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/job-profile')}`} onClick={() =>{ setSideMenuOpen(false)}}><BsFillBriefcaseFill />Job Profiles</Link>
-                    <Link to="/dashboard/job-interview" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/job-interview')}`} onClick={() =>{ setSideMenuOpen(false)}}><BsFillLaptopFill />AI Interview</Link>
-                {/* <Link to="/dashboard/applications" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/applications')}`}>Applications</Link>
+                    <Link to="/dashboard" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard')}`} onClick={() => { setSideMenuOpen(false) }}><HiHome />Home</Link>
+                    <Link to="/dashboard/profile" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/profile')}`} onClick={() => { setSideMenuOpen(false) }}><FaUser />My Profile</Link>
+                    <Link to="/dashboard/job-profile" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/job-profile')}`} onClick={() => { setSideMenuOpen(false) }}><BsFillBriefcaseFill />Job Profiles</Link>
+                    <Link to="/dashboard/job-interview" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/job-interview')}`} onClick={() => { setSideMenuOpen(false) }}><BsFillLaptopFill />AI Interview</Link>
+                    {/* <Link to="/dashboard/applications" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/applications')}`}>Applications</Link>
                 <Link to="/dashboard/analytics" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/analytics')}`}>Analytics</Link>
                 <Link to="/dashboard/settings" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/settings')}`}>Settings</Link> */}
                 </nav>

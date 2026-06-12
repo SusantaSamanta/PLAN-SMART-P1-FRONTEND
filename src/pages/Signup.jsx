@@ -156,22 +156,22 @@ const Signup = () => {
 
 
 
-            {/* OR Divider */}
+            {/* OR Divider
             <div className="h-10 my-2 md:my-1 flex items-center">
               <div className="flex-grow border-t border-gray-700"></div>
               <span className="mx-3 text-gray-500 text-sm">OR</span>
               <div className="flex-grow border-t border-gray-700"></div>
-            </div>
+            </div> */}
 
 
             {/* Social Logins */}
             <div className="grid grid-cols-1 border-0 gap-4">
-              <button className="flex items-center justify-center w-full h-10 border-b-1 border-r-1 border-gray-700 rounded-lg bg-gray-800 hover:bg-gray-700">
+              {/* <button className="flex items-center justify-center w-full h-10 border-b-1 border-r-1 border-gray-700 rounded-lg bg-gray-800 hover:bg-gray-700">
                 <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-6 h-6" />
                 <span className='ml-2 font-bold'>
                   Continue with Google
                 </span>
-              </button>
+              </button> */}
               {/* <button className="flex items-center justify-center w-full h-10 border-b-1 border-r-1 border-gray-700 rounded-lg bg-gray-800 hover:bg-gray-700">
                 <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" className="w-6 h-6" />
               </button>

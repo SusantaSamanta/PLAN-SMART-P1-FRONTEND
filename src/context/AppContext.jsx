@@ -52,7 +52,7 @@ const AppContextProvider = (props) => {
                 setIsLogin(true);
                 // setShowLoginPage(false);
                 setUserDetails(data);
-                // console.log('User data : ', data.name);
+                // console.log('User data : ', data);
 
             } else {
                 setIsLogin(false);

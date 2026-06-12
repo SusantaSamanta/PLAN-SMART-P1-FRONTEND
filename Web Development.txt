@@ -51,15 +51,75 @@ jobType : ["Full Time", "Internship", "Trainee", "Contract"]
 
 ////////////////////////// ⭐ How use Redux ⭐  ///////////////////////
 
-Step 1: npm i redux
-Step 2: npm i npm i @reduxjs/toolkit
+Step 1: npm i react-redux
+Step 2: npm i @reduxjs/toolkit
 
 Step 3: Create a folder called 'store'
-		            	   inside ''  another folder 'slice'
-						              file 
+		            	   inside ''  another folder 'slice' 
+						                                 create one file inside slice
+Step 4: PendingInterviewsSlice : 
+			import { createSlice } from "@reduxjs/toolkit";
+			const PendingInterviewsSlice = createSlice({
+			    name: "pendingInterviews",
+			    initialState: [],
+			    reducers: {
+			        addPendingInterviews(state, action) {
+			            return action.payload // payload mean parameter which send where addPendingInterviews() call using dispatch | payload can anything mean obj, arr etc ..
+			        },
+			        deletePendingInterview(state, action) {
+					
+			        },
+			    }
+			});
+			
+			export default PendingInterviewsSlice.reducer;
+			export const { addPendingInterviews, deletePendingInterview } = PendingInterviewsSlice.actions;
+
+Step 5: Create (Inside store) index.js : 
+			import { configureStore } from "@reduxjs/toolkit";
+			import PendingInterviewsSlice from "./slices/PendingInterviewsSlice";
+
+			const store = configureStore({
+			    reducer: {
+			        pendingInterviews: PendingInterviewsSlice,
+			    }
+			})
+
+			export default store;
+
+Step 6: Connect redux store to application :
+
+			import { Provider } from 'react-redux';
+			import store from './store/index.js';
+
+			createRoot(document.getElementById('root')).render(
+			  <Provider store={store}>
+			    <AppContextProvider>
+			      <App />
+			    </AppContextProvider>
+			  </Provider>
+			)
+
+Step 7: Add data to store or updates the store by : useDispatch :
+		import { useDispatch} from 'react-redux';
+		import { addPendingInterviews } from '../../store/slices/PendingInterviewsSlice';
+			// this can come from export const PendingInterviewsSlice.actions;
+		const Component = () =>{
+			const dispatch = useDispatch(); // this dispatch method is ues for load data in slice's state
+			dispatch(addPendingInterviews(data)); // where data is called payload
+		}
+
+Step 8: Used to read data from the Redux store by : useSelector
+
+		import { useSelector } from 'react-redux';
+		const pendingInterviews = useSelector((state) => {
+        	console.log(state.pendingInterviews)               
+        	return state.pendingInterviews; //      this ▽ can use where
+			//             from store reducer : pendingInterviews: PendingInterviewsSlice,
+    	})
 
 
-Step 4: Create a folder called 'store'
+
 
 
 

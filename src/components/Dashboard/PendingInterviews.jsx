@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { DashboardContext } from '../../context/DashboardContext';
 import { RiRobot2Fill } from "react-icons/ri";
 import { fetchAllPendingInterviews } from '../../../utils/dashboardDataFetch';
-import axios from 'axios';
 import InterviewInstructionModal from './InterviewInstructionModal';
-import Interview from './Interview';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPendingInterviews } from '../../store/slices/PendingInterviewsSlice';
 
 const PendingInterviews = () => {
-    const { pendingInterviews, setPendingInterviews } = useContext(DashboardContext);
+    const dispatch = useDispatch();
 
     const [openInterviewInstruction, setOpenInterviewInstruction] = useState(false);
     const currentApplicationId = useRef(null);
@@ -16,11 +16,15 @@ const PendingInterviews = () => {
     useEffect(() => {
         const call = async () => {
             const data = await fetchAllPendingInterviews();
-            setPendingInterviews(data);
+            dispatch(addPendingInterviews(data)); /// dispatch is use to add data to slice anf then store 
         }
         call();
     }, [])
 
+    const pendingInterviews = useSelector((state) => {
+        // console.log(state.pendingInterviews)
+        return state.pendingInterviews;
+    })
 
 
     const handleShowInstruction = (applicationId) => {

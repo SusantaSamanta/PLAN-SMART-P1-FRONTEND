@@ -1,14 +1,18 @@
 import React, { useContext } from 'react'
 import { RiRobot2Fill } from "react-icons/ri";
 import { DashboardContext } from '../../context/DashboardContext';
-const InterviewPageHeader = ({ applicationId }) => {
-
+import { useDispatch, useSelector } from 'react-redux';
+import { deletePendingInterview } from '../../store/slices/PendingInterviewsSlice';
+const InterviewPageHeader = ({ applicationId, setOpenInterviewInstruction }) => {
+    const dispatch = useDispatch();
     const {
-        pendingInterviews, setPendingInterviews,
         interviewPageOpen, setInterviewPageOpen,
     } = useContext(DashboardContext);
 
+    const pendingInterviews = useSelector((state) => state.pendingInterviews);
     const interviewDetails = pendingInterviews.filter((item) => item.applicationId === applicationId)[0];
+
+
 
     return (
         <>
@@ -35,7 +39,11 @@ const InterviewPageHeader = ({ applicationId }) => {
 
                 </div>
 
-                <button onClick={() => setInterviewPageOpen(false)}
+                <button onClick={() => {
+                    setInterviewPageOpen(false);
+                    setOpenInterviewInstruction(false);
+                    dispatch(deletePendingInterview(applicationId));
+                }}
                     className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md text-sm">
                     Exit
                 </button>

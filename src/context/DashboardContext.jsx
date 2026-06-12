@@ -14,8 +14,8 @@ const DashboardContextProvider = ({ children }) => {
     // }
   ]);
   const [reappliedJobs, setReappliedJobs] = useState([]);
-  const [pendingInterviews, setPendingInterviews] = useState([]);
-  const [interviewPageOpen, setInterviewPageOpen] = useState(false); 
+  const [interviewPageOpen, setInterviewPageOpen] = useState(false);
+  
 
 
 
@@ -54,8 +54,8 @@ const DashboardContextProvider = ({ children }) => {
     appliedJobs, setAppliedJobs,
     reappliedJobs, setReappliedJobs,
     checkIsJobApplied,
-    pendingInterviews, setPendingInterviews,
-    interviewPageOpen, setInterviewPageOpen, 
+    interviewPageOpen, setInterviewPageOpen,
+    
   }
 
 

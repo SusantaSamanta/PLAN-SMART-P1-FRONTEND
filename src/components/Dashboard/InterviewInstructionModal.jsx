@@ -4,17 +4,19 @@ import { DashboardContext } from "../../context/DashboardContext";
 import { useNavigate } from "react-router-dom";
 import Interview from "./Interview";
 import { IoCall } from "react-icons/io5";
+import { useDispatch } from "react-redux";
+import { addCurrentInterviewData } from "../../store/slices/CurrentInterviewDataSlice";
 
 
 const InterviewInstructionModal = ({
     setOpenInterviewInstruction,
     applicationId, }) => {
 
+    const dispatch = useDispatch();
     const [isInterviewLoaded, startInterviewLoading] = useTransition();
 
 
     const {
-        pendingInterviews, setPendingInterviews,
         interviewPageOpen, setInterviewPageOpen,
     } = useContext(DashboardContext);
 
@@ -33,13 +35,14 @@ const InterviewInstructionModal = ({
                     }
                 )
                 if (data.success) {
-                    console.log('interview : ', data)
-                    // setOpenInterviewInstruction(false);
+                    // console.log('interview : ', data);
+                    // setCurrentInterviewData(data.interview);
+                    dispatch(addCurrentInterviewData(data.interview));
                 } else {
                     console.log('interview error', data)
                 }
             } catch (error) {
-                console.log(error.response);
+                console.log(error);
             }
         })
     }
@@ -84,16 +87,18 @@ const InterviewInstructionModal = ({
                         onClick={() => handleStartInterview(applicationId)}
                         className="px-5 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-sm font-semibold flex"
                     >
-                         Start Interview<IoCall className="mt-1 ml-2" />
+                        Start Interview<IoCall className="mt-1 ml-2" />
                     </button>
                 </div>
             </div>
 
             {interviewPageOpen &&
                 <Interview
+                    setOpenInterviewInstruction={setOpenInterviewInstruction}
                     applicationId={applicationId}
                     isInterviewLoaded={isInterviewLoaded}
-                />}
+                />
+            }
 
         </div>
     );
