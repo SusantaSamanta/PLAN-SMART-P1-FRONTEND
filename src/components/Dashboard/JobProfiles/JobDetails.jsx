@@ -92,7 +92,7 @@ const JobDetails = ({ job }) => {
             {/* Header */}
             <div className="mb-4 pb-3 border-b-1 border-gray-600 flex flex-col  justify-between">
                 <div className="flex items-center">
-                    <div className="h-12 w-12 mr-4 rounded-full border-2 flex items-center justify-center overflow-hidden">
+                    <div className="h-12 w-12 mr-4 rounded-full border-2 flex items-center justify-center overflow-hidden bg-white">
                         <img src={job.companyLogo} />
                     </div>
                     <div>

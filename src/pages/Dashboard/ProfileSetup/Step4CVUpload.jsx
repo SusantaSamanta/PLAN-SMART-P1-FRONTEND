@@ -62,8 +62,14 @@ const Step4CVUpload = () => {
         "/upload/pg_1,f_png,w_80/"
     );
 
+
+    const [isCvUploading, setIsCvUploading] = useState(false);
     const handleCvSubmit = async (e) => {
         e.preventDefault();
+        if (isCvUploading) {
+            return
+        }
+        setIsCvUploading(true);
 
         // get file from input
         const fileInput = e.target.querySelector('input[type="file"]');
@@ -74,11 +80,11 @@ const Step4CVUpload = () => {
             return;
         }
         const formData = new FormData();
-        formData.append("avatar", file);
+        formData.append("cv", file);
 
         try {
             const res = await axios.post(
-                "/api/user/set-profile-pic",
+                "/api/user/set-cv",
                 formData,
                 {
                     headers: {
@@ -86,10 +92,17 @@ const Step4CVUpload = () => {
                     },
                 }
             );
+            console.log(res)
+            if (res.data.success) {
+                setUserCvUrl(res.data.url);
+                toast.success(res.data.message);
+            }
         } catch (error) {
             error.response.data.message ?
                 toast.error(error.response.data.message) :
                 console.log("Profile pic upload failed", error);
+        } finally {
+            setIsCvUploading(false);
         }
         setOpenModal(false);
     };
@@ -146,7 +159,7 @@ const Step4CVUpload = () => {
                             <img
                                 src={previewImageUrl}
                                 alt="PDF Preview"
-                                className="border mt-2 rounded shadow hover:opacity-90 cursor-pointer"
+                                className="h-30 w-20 border mt-2 rounded shadow hover:opacity-90 cursor-pointer"
                             />
                         </a>
                 }
@@ -159,7 +172,7 @@ const Step4CVUpload = () => {
                         className="w-full bg-[#1b2544] border border-gray-600 p-0 rounded-md text-white cursor-pointer file:mr-3 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-blue-600 file:text-white hover:file:bg-blue-700"
                     />
                     <button type="submit" className=" bg-green-700 hover:bg-green-800 px-6 py-2 rounded-md transition">
-                        Save
+                        {isCvUploading ? "Loading..." : "Save"}
                     </button>
 
                 </div>

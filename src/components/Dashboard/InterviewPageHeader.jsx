@@ -3,6 +3,7 @@ import { RiRobot2Fill } from "react-icons/ri";
 import { DashboardContext } from '../../context/DashboardContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { deletePendingInterview } from '../../store/slices/PendingInterviewsSlice';
+import { clearCurrentInterviewData } from '../../store/slices/CurrentInterviewDataSlice';
 const InterviewPageHeader = ({ applicationId, setOpenInterviewInstruction }) => {
     const dispatch = useDispatch();
     const {
@@ -43,6 +44,7 @@ const InterviewPageHeader = ({ applicationId, setOpenInterviewInstruction }) => 
                     setInterviewPageOpen(false);
                     setOpenInterviewInstruction(false);
                     dispatch(deletePendingInterview(applicationId));
+                    dispatch(clearCurrentInterviewData({}));
                 }}
                     className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md text-sm">
                     Exit

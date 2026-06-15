@@ -33,9 +33,9 @@ const HomeHero = () => {
                     <Link to="/dashboard" className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">
                         Get Started
                     </Link>
-                    <button className="border border-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition flex items-center gap-2 justify-center">
-                        Request a Demo <span className="text-lg">→</span>
-                    </button>
+                    <Link to={'/signup'} className="border border-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition flex items-center gap-2 justify-center">
+                        Create account free <span className="text-lg">→</span>
+                    </Link>
                 </div>
             </motion.div>
         </section>

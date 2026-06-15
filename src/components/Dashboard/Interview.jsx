@@ -6,6 +6,7 @@ import { DashboardContext } from "../../context/DashboardContext";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { deletePendingInterview } from "../../store/slices/PendingInterviewsSlice";
+import axios from "axios";
 
 
 // Your assistant config (workflow as assistant)
@@ -64,6 +65,10 @@ export const interviewWorkflowAssistant = {
 
 const Interview = ({ applicationId, isInterviewLoaded, setOpenInterviewInstruction }) => {
 
+    if (isInterviewLoaded) {
+      return  
+    } 
+
     const dispatch = useDispatch();
     const { profilePicUrl, userDetails, } = useContext(AppContext);
     const { interviewPageOpen, setInterviewPageOpen } = useContext(DashboardContext);
@@ -72,6 +77,7 @@ const Interview = ({ applicationId, isInterviewLoaded, setOpenInterviewInstructi
     //////////// Variables for specking  /////////////
     const [isSpecking, setIsSpecking] = useState(false);
     const [conversation, setConversation] = useState([]);
+    const conversationArrayRef = useRef([]);
     const [botCaption, setBotCaption] = useState('');
     const botCaptionTimerRef = useRef(null);
     const botSpeckingBorderSymbolRef = useRef(true);
@@ -91,7 +97,7 @@ const Interview = ({ applicationId, isInterviewLoaded, setOpenInterviewInstructi
     const currentInterviewData = useSelector((state) => state.currentInterviewData);
     const pendingInterviews = useSelector((state) => state.pendingInterviews);
 
-    // console.log(currentInterviewData)
+    // console.log(currentInterviewData._id, "Interview data")
 
     // console.log(pendingInterviews)
     const { company, title, sector, role, } = pendingInterviews.filter((item) => item.applicationId === applicationId)[0];
@@ -186,11 +192,13 @@ const Interview = ({ applicationId, isInterviewLoaded, setOpenInterviewInstructi
                 setIsSpecking(false);
                 setError(true);
                 toast.error("Something wrong please try again alter.");
+                // handleInterviewReview()
+                // console.log("review call")
                 setTimeout(() => {
                     setInterviewPageOpen(false);
                     setOpenInterviewInstruction(false);
                     dispatch(deletePendingInterview(applicationId));
-                }, 1500);
+                }, 2500);
             });
 
             vapi.on("speech-end", () => {
@@ -211,8 +219,8 @@ const Interview = ({ applicationId, isInterviewLoaded, setOpenInterviewInstructi
                 setIsSpecking(false);
                 setCallEnd(true);
                 if (!isVapiError.current) {
-                    console.log(error)
                     toast.success("Call ended. Review will be sended. Exit now");
+                    // console.log("Handle review", currentInterviewData._id)
                     handleInterviewReview();
                 }
 
@@ -253,18 +261,44 @@ const Interview = ({ applicationId, isInterviewLoaded, setOpenInterviewInstructi
         }
         setCallEnd(true);
         vapi.end();
-        // setIsBotSpecking(false);
-        // setIsUserSpecking(false);
-        // setIsSpecking(false);
-        // toast.success("Call ended. Review will be sended.");
-        // setTimeout(() => {
-        //     setInterviewPageOpen(false);
-        // }, 300);
     }
+    
 
     const handleInterviewReview = async () => {
-        console.log(conversation);
-    }
+        console.log(currentInterviewData._id)
+        console.log("call review")
+        try {
+            const response = await axios.post("/api/user/job/end-interview",
+                {
+                    interviewId: currentInterviewData._id,
+                    conversation: conversationArrayRef.current
+                }
+            );
+
+            if (response.data.success) {
+                toast.success(
+                    "Review generated successfully. Check Completed Interviews."
+                );
+                // setInterviewPageOpen(false);
+                console.log(response.data)
+            } else {
+                toast.error(
+                    response.data.message || "Failed to generate review."
+                );
+            }
+
+        } catch (error) {
+            console.log(error);
+            toast.error("Unable to generate review. Please try again.");
+        }
+    };
+
+    // handleInterviewReview()
+
+    useEffect(() => {
+        conversationArrayRef.current = conversation;
+        console.log("History:", conversationArrayRef.current);
+    }, [conversation]);
 
 
     return (

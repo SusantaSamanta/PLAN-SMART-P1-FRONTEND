@@ -69,14 +69,14 @@ const Login = () => {
 
   return (
     <>
-      <section className='bg-[#101114]'>
+      <section className='bg-[#101114] '>
 
-        <div ref={formHeightInMobile} className='h-auto md:h-screen  flex flex-col justify-center items-end md:items-center text-white overflow-hidden
+        <div ref={formHeightInMobile} className='h-screen  flex flex-col justify-center items-end md:items-center text-white overflow-hidden 
           bg-[url("./assets/Rays.svg")]  
           bg-[length:150%_150%] bg-[-40px_-350px] 
           md:bg-[length:120%_120%] md:bg-[80px_-280px] 
           lg:bg-[length:80%_80%] lg:bg-[top_right]  bg-no-repeat'>
-          <motion.div className='h-full md:h-auto  w-full md:w-120   pt-10 px-6 md:p-7 border-t-1 md:border-2 border-[#6d6d6d2f] rounded-3xl md:rounded-3xl bg-[#dcdcdc06] backdrop-blur-[0px]'
+          <motion.div className='h-screen md:h-auto  w-full md:w-110   pt-10 px-6 md:p-7 border-t-1 md:border-2 border-[#6d6d6d2f] rounded-3xl md:rounded-3xl md:bg-[#dcdcdc06] backdrop-blur-[0px]'
           // initial={{ opacity: 0, y: 50 }}
           // whileInView={{ opacity: 1, y: 0 }}
           // transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -213,7 +213,7 @@ const Login = () => {
 
 
           </motion.div>
-          <p className="mb-10 w-full  md:hidden text-center text-gray-300 text-sm">
+          <p className="mb-10 w-full h-screen flex items-end justify-center  md:hidden text-center text-gray-300 text-sm">
             Don't have an account?{" "}
             <Link to={'/signup'} className="text-blue-500 hover:underline">
               Sign up

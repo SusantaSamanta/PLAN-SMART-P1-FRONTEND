@@ -95,87 +95,88 @@ const DashboardProfile = () => {
     return (
         <>
             {
-                isProfileComplete ? <div className="w-full px-4 md:px-8 py-6">
+                isProfileComplete ?
+                    <div className="w-full px-0 md:px-8 md:py-6 ">
 
-                    {/* Header */}
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-                        <h1 className="text-2xl font-semibold text-white">My Profile</h1>
-                        <button
-                            onClick={() => openEditTab(1)}
-                            className="mt-3 md:mt-0 px-5 py-2 bg-blue-600 hover:bg-blue-700 rounded-md"
-                        >
-                            Edit Profile
-                        </button>
+                        {/* Header */}
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                            <h1 className="text-2xl font-semibold text-white">My Profile</h1>
+                            <button
+                                onClick={() => openEditTab(1)}
+                                className="mt-3 md:mt-0 px-5 py-2 bg-blue-600 hover:bg-blue-700 rounded-md"
+                            >
+                                Edit Profile
+                            </button>
+                        </div>
+
+                        {/* Profile Card */}
+                        <div className="bg-[#121b33] rounded-lg p-6 shadow-lg">
+
+                            {/* BASIC INFO */}
+                            <Section
+                                title="Basic Details"
+                                onEdit={() => openEditTab(1)}
+                            >
+                                <Item label="Full Name" value={profileSetupForm.name} />
+                                <Item label="Email" value={profileSetupForm.email} />
+                                <Item label="Phone" value={profileSetupForm.phone} />
+                                <Item label="Location" value={profileSetupForm.location} />
+                            </Section>
+
+                            {/* EDUCATION & EXPERIENCE */}
+                            <Section
+                                title="Education & Experience"
+                                onEdit={() => openEditTab(2)}
+                            >
+                                <Item label="Qualification" value={profileSetupForm.highestQualification} />
+                                <Item label="University" value={profileSetupForm.university} />
+                                <Item label="Graduation Year" value={profileSetupForm.graduationYear} />
+                                <Item
+                                    label="Has Experience"
+                                    value={profileSetupForm.hasExperience}
+                                />
+                                {profileSetupForm.hasExperience == 'yes' && (
+                                    <Item label="Experience" value={`${profileSetupForm.experienceYears} Years`} />
+                                )}
+                                {profileSetupForm.hasExperience == 'yes' && (
+                                    <Item label="Current Role" value={profileSetupForm.currentRole} />
+                                )}
+                            </Section>
+
+                            {/* SKILLS */}
+                            <Section
+                                title="Technical Skills"
+                                onEdit={() => openEditTab(3)}
+                            >
+                                <div className="flex flex-wrap gap-2">
+                                    {profileSetupForm.skills?.map((skill, i) => (
+                                        <span
+                                            key={i}
+                                            className="bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full text-sm"
+                                        >
+                                            {skill}
+                                        </span>
+                                    ))}
+                                </div>
+                            </Section>
+
+                            {/* FILES */}
+                            <Section
+                                title="Documents"
+                                onEdit={() => openEditTab(4)}
+                            >
+                                <Item
+                                    label="Profile Photo"
+                                    value={profilePicUrl ? "Uploaded" : "Not Uploaded"}
+                                />
+                                <Item
+                                    label="Resume / CV"
+                                    value={userCvUrl ? "Uploaded" : "Not Uploaded"}
+                                />
+                            </Section>
+
+                        </div>
                     </div>
-
-                    {/* Profile Card */}
-                    <div className="bg-[#121b33] rounded-lg p-6 shadow-lg">
-
-                        {/* BASIC INFO */}
-                        <Section
-                            title="Basic Details"
-                            onEdit={() => openEditTab(1)}
-                        >
-                            <Item label="Full Name" value={profileSetupForm.name} />
-                            <Item label="Email" value={profileSetupForm.email} />
-                            <Item label="Phone" value={profileSetupForm.phone} />
-                            <Item label="Location" value={profileSetupForm.location} />
-                        </Section>
-
-                        {/* EDUCATION & EXPERIENCE */}
-                        <Section
-                            title="Education & Experience"
-                            onEdit={() => openEditTab(2)}
-                        >
-                            <Item label="Qualification" value={profileSetupForm.highestQualification} />
-                            <Item label="University" value={profileSetupForm.university} />
-                            <Item label="Graduation Year" value={profileSetupForm.graduationYear} />
-                            <Item
-                                label="Has Experience"
-                                value={profileSetupForm.hasExperience}
-                            />
-                            {profileSetupForm.hasExperience == 'yes' && (
-                                <Item label="Experience" value={`${profileSetupForm.experienceYears} Years`} />
-                            )}
-                            {profileSetupForm.hasExperience == 'yes' && (
-                                <Item label="Current Role" value={profileSetupForm.currentRole} />
-                            )}
-                        </Section>
-
-                        {/* SKILLS */}
-                        <Section
-                            title="Technical Skills"
-                            onEdit={() => openEditTab(3)}
-                        >
-                            <div className="flex flex-wrap gap-2">
-                                {profileSetupForm.skills?.map((skill, i) => (
-                                    <span
-                                        key={i}
-                                        className="bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full text-sm"
-                                    >
-                                        {skill}
-                                    </span>
-                                ))}
-                            </div>
-                        </Section>
-
-                        {/* FILES */}
-                        <Section
-                            title="Documents"
-                            onEdit={() => openEditTab(4)}
-                        >
-                            <Item
-                                label="Profile Photo"
-                                value={profilePicUrl ? "Uploaded" : "Not Uploaded"}
-                            />
-                            <Item
-                                label="Resume / CV"
-                                value={userCvUrl ? "Uploaded" : "Not Uploaded"}
-                            />
-                        </Section>
-
-                    </div>
-                </div>
 
                     :
 

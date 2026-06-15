@@ -101,7 +101,7 @@ const InterviewInstructionModal = ({
             }
 
         </div>
-    );
+    ); 
 };
 
 export default InterviewInstructionModal;
