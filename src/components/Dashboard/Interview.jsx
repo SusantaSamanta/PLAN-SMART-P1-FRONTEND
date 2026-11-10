@@ -110,7 +110,7 @@ const Interview = ({ applicationId, isInterviewLoaded, setOpenInterviewInstructi
     const [error, setError] = useState(false);
     const [hasPlayed, setHasPlayed] = useState(false);
     useEffect(() => {
-        const audio = new Audio("../src/assets/audio/vapi err.mp3");
+        const audio = new Audio("../src/assets/audio/vapi errr.mp3");
         if (error && !hasPlayed) {
             audio.play().catch(() => { console.log('Audio error... !') });
             setHasPlayed(true);

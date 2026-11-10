@@ -1,7 +1,9 @@
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { DashboardContext } from "../../../context/DashboardContext";
+import { AppContext } from "../../../context/AppContext";
+import { Link } from "react-router-dom";
 
 
 
@@ -9,6 +11,9 @@ import { DashboardContext } from "../../../context/DashboardContext";
 const JobDetails = ({ job }) => {
 
     const { appliedJobs, setAppliedJobs, checkIsJobApplied } = useContext(DashboardContext);
+    const { isProfileComplete } = useContext(AppContext);
+    const [showProfileSetupPopup, setShowProfileSetupPopup] = useState(false);
+
 
     // const checkFun = (jobId) => {
     //     // console.log(appliedJobs, 'cap');
@@ -33,7 +38,15 @@ const JobDetails = ({ job }) => {
 
 
 
+
     const handleApplication = async (jobId, isAbleToApply) => {
+
+        if (!isProfileComplete) {
+            setShowProfileSetupPopup(true);
+            return
+        }
+
+
         if (!isAbleToApply) {
             toast.warning('Not give already applied')
             return;
@@ -150,8 +163,53 @@ const JobDetails = ({ job }) => {
             >
                 Deadline Closed
             </button> */}
+
+            {
+                showProfileSetupPopup && <ShowSetupPopup onClose={() => setShowProfileSetupPopup(false)} />
+            }
         </div>
     );
 };
 
 export default JobDetails;
+
+
+
+
+
+
+function ShowSetupPopup({onClose}) {
+    return (
+        <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/60 backdrop-blur-[2px]">
+            <div className="bg-[#121b33] w-full md:w-full md:max-w-lg rounded-b-none rounded-xl md:rounded-xl shadow-lg border border-gray-800 p-4 pb-15 md:p-6">
+
+                <h2 className="text-xl md:text-2xl font-semibold mb-3">
+                    ⚠️ Complete Your Profile to Proceed
+                </h2>
+                <p className="text-gray-400 max-w-md mb-6">
+                    Please fill in your personal and technical details to unlock AI interview
+                    suggestions and job recommendations.
+                </p>
+
+                {/* Footer */}
+                <div className="flex justify-end gap-4 mt-6">
+                    <button
+                        onClick={onClose}
+                        className="px-4 py-2 rounded-md bg-gray-600 hover:bg-gray-700 text-sm"
+                    >
+                        Cancel
+                    </button>
+
+                    <Link
+                        to="/dashboard/profile-setup"
+                        className="px-5 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-sm font-semibold flex"
+                    >
+                        Complete Profile Now
+                    </Link>
+                </div>
+            </div>
+
+
+        </div>
+    )
+}

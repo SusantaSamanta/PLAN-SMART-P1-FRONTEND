@@ -80,7 +80,7 @@ const JobList = ({ onSelectJob, selectedJob }) => {
         allJobs.length === 0 ? (
           <div className="flex justify-center items-center py-8">
             <span className="text-sm text-gray-400 tracking-wide">
-              Loading jobs…
+              No jobs found
             </span>
           </div>
         )

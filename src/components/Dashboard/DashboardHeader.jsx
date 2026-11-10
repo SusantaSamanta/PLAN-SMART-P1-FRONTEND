@@ -1,13 +1,15 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useState, useRef, useEffect, useContext } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { FaRegBell } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 import HamburgerButton from "../HamburgerButton";
+import axios from "axios";
 
-const DashboardHeader = ({sideMenuOpen, setSideMenuOpen}) => {
+const DashboardHeader = ({ sideMenuOpen, setSideMenuOpen }) => {
 
-    const { profilePicUrl, userDetails } = useContext(AppContext);
+    const navigate = useNavigate();
+    const { profilePicUrl, userDetails, setIsLogin } = useContext(AppContext);
 
     // const [sideMenuOpen, setSideMenuOpen] = useState(false);
 
@@ -17,6 +19,7 @@ const DashboardHeader = ({sideMenuOpen, setSideMenuOpen}) => {
 
     const [notificationBar, setNotificationBar] = useState(false);
     const notificationRef = useRef(null);
+
 
 
 
@@ -42,6 +45,22 @@ const DashboardHeader = ({sideMenuOpen, setSideMenuOpen}) => {
         // return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
+    const handleLogout = async () => {
+        try {
+            const { data } = await axios.post('/api/auth/logout');
+            // console.log(data);
+            if (data.success) {
+                navigate('/');
+                setIsLogin(false);
+                window.location.reload();
+            }
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+
+
     return (
         <header className="py-1 md:py-2 px-4 flex items-center justify-between shadow-sm text-white sticky top-0 z-50 border-0 bg-[#0d1427]">
             {/* Left: Dashboard Title */}
@@ -57,8 +76,9 @@ const DashboardHeader = ({sideMenuOpen, setSideMenuOpen}) => {
             <div className="flex items-center gap-4 relative" ref={menuRef}>
                 {/* Notification Icon */}
                 <button
+                    disabled={true}
                     onClick={() => setNotificationBar((prev) => !prev)}
-                    className="relative text-gray-400 hover:text-blue-400 transition"
+                    className="relative text-gray-400 hover:text-blue-400 transition disabled:cursor-not-allowed"
                 >
                     <FaRegBell className="text-2xl" />
                     <span className="absolute top-0 right-0 block h-2 w-2 bg-red-500 rounded-full"></span>
@@ -107,15 +127,15 @@ const DashboardHeader = ({sideMenuOpen, setSideMenuOpen}) => {
                 {menuOpen && (
                     <div className="absolute right-0 top-14 w-48 bg-[#121b33] rounded-lg shadow-lg border border-gray-700 overflow-hidden  z-50">
                         <div className="px-4 py-3 border-b border-gray-700">
-                            <p className="text-sm font-medium text-white">Susanta Samanta</p>
-                            <p className="text-xs text-gray-400">susanta@gmail.com</p>
+                            <p className="text-sm font-medium text-white">{userDetails.name ?? ""}</p>
+                            <p className="text-xs text-gray-400">{userDetails.email ?? ""}</p>
                         </div>
                         <ul className="text-sm text-gray-300">
                             {/* <li className="px-4 py-2 hover:bg-[#1b2544] cursor-pointer transition">
                                 View Profile
                             </li> */}
                             <li className="px-4 py-2 hover:bg-[#1b2544] cursor-pointer transition text-red-400">
-                                Logout
+                                <button onClick={() => handleLogout()} className="cursor-pointer">Logout</button>
                             </li>
                         </ul>
                     </div>

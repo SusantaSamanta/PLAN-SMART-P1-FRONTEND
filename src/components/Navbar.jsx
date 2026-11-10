@@ -1,21 +1,24 @@
 // src/components/Navbar.jsx
-import React, { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
-import { Link as ScrollLink } from "react-scroll"
+
 import MobileNavbar from "./MobileNavbar";
-import MobileMenu from "./MobileMenu";
+
 
 
 const Navbar = () => {
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+
+
 
   const {
     isLogin, setIsLogin,
-    userDetails, setUserDetails,
-    isLoading, setIsLoading } = useContext(AppContext)
+    isLoading } = useContext(AppContext)
 
 
 
@@ -39,10 +42,11 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       const { data } = await axios.post('/api/auth/logout');
-      console.log(data);
+      // console.log(data);
       if (data.success) {
         navigate('/');
         setIsLogin(false);
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);
@@ -53,10 +57,33 @@ const Navbar = () => {
 
   const bars = Array.from({ length: 20 });
 
+
+  // const [activeNav, setActiveNav] = useState('')
+
+  // useEffect(() => {
+
+  // }, [location.pathname])
+
+
+
+  function activeNav(path) {
+    if (location.pathname === path) {
+      return `text-blue-300  cursor-pointer transition`
+    } else {
+      return `cursor-pointer hover:text-blue-200 transition`
+    }
+  }
+
+
+
+
+
+
+
   return (
 
     <nav className="w-full flex justify-center items-center fixed top-0 left-0 z-60 border-0">
-      {/* <div className="h-35 w-full bg-[#a5a5a500] absolute top-0 left-0 z-40">
+      <div className="h-35 w-full bg-[#a5a5a500] absolute top-0 left-0 z-40">
         {bars.map((_, index) => {
           const height = 5 * (index + 1); // each increases by 5%
           return (
@@ -67,8 +94,8 @@ const Navbar = () => {
             ></div>
           );
         })}
-        
-      </div> */}
+
+      </div>
 
 
 
@@ -79,25 +106,31 @@ const Navbar = () => {
 
         {/* Logo */}
         <Link to={'/'} onClick={() => clickToScroll('home')} className="flex items-center gap-2">
-          <img src="../src/assets/react.svg" alt="logo" className="w-8 h-8 hidden lg:block hover:animate-[spin-slow_6s_linear_infinite]" />
-          <h1 className="font-semibold text-lg">VISION</h1>
+          <img src="../src/assets/app logo 1.png" alt="logo" className="w-8 h-8 hidden lg:block hover:animate-[spin-slow_6s_linear_infinite]" />
+          <h1 className="font-semibold text-lg md:flex flex-col relative pb-2">
+            FutureVision
+            <span className="text-[11px] absolute top-[22px] hidden md:block text-gray-300">Build your future</span>
+          </h1>
         </Link>
 
         {/* Nav Links */}
         <ul className="flex gap-8 text-sm font-medium">
 
-          <Link to={'/about'} onClick={() => clickToScroll('about')} className="hover:text-blue-300 cursor-pointer transition">
+          <Link to={'/about'} onClick={() => clickToScroll('about')} className={activeNav('/about')}>
             About
           </Link>
 
-          <Link to={'/features'} onClick={() => clickToScroll('features')} className="hover:text-blue-300 cursor-pointer transition">
+          <Link to={'/features'} onClick={() => clickToScroll('features')} className={activeNav('/features')}>
             Features
           </Link>
 
-          <Link to={'/contact'} className="hover:text-blue-300 cursor-pointer transition">Contact Us</Link>
+          <Link to={'/contact'} onClick={() => clickToScroll('contact')} className={activeNav('/contact')}>Contact Us</Link>
 
+          {isLoading && (
+            <div className="w-20 h-5 rounded-2xl bg-blue-800/40 animate-pulse" />
+          )}
           {!isLoading && isLogin && (
-            <Link to="/dashboard" className="hover:text-blue-300 cursor-pointer transition">
+            <Link to="/dashboard" className="hover:text-blue-200 cursor-pointer transition">
               Dashboard
             </Link>
           )}
@@ -106,6 +139,9 @@ const Navbar = () => {
 
         {/* Buttons */}
         <div className="flex items-center gap-4">
+          {isLoading && (
+            <div className="w-14 h-5 rounded-2xl bg-blue-800/40 animate-pulse" />
+          )}
           {!isLoading &&
             <div>
               {

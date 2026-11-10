@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { checkUserLogin, getProfileData } from '../../utils/checkUserLogin';
+import { serverConnectionStatus } from '../../utils/serverConnectionStatus';
 
 
 export const AppContext = createContext();
@@ -27,6 +28,7 @@ const AppContextProvider = (props) => {
     const [userCvUrl, setUserCvUrl] = useState('');
     const [isProfileComplete, setIsProfileComplete] = useState(false);
     const [openModal, setOpenModal] = useState(false);
+    const [isServerConnected, setIsServerConnected,] = useState(false);
 
 
     const variablesForSend = {
@@ -39,6 +41,7 @@ const AppContextProvider = (props) => {
         userCvUrl, setUserCvUrl,
         isProfileComplete, setIsProfileComplete,
         openModal, setOpenModal,
+        isServerConnected, setIsServerConnected,
     }
 
 
@@ -79,6 +82,40 @@ const AppContextProvider = (props) => {
         }
         callGetProfile()
     }, [isLogin])
+
+
+
+    useEffect(() => {
+        let isAlreadyConnected = JSON.parse(localStorage.getItem("server"));
+        if (isAlreadyConnected && isAlreadyConnected.isRunning && isAlreadyConnected.time > Date.now()) {
+            console.log(isAlreadyConnected, "lll")
+            setIsServerConnected(true);
+            setIsLoading(true);
+            return
+        }
+        setIsServerConnected(false);
+
+        async function serverStatus() {
+
+            if (isAlreadyConnected && isAlreadyConnected.isRunning && isAlreadyConnected.time > Date.now()) {
+                return
+            }
+
+            console.log(isAlreadyConnected, "okkkk")
+            const status = await serverConnectionStatus();
+            setIsServerConnected(status ? true : false);
+            if (status) {
+                localStorage.setItem("server", JSON.stringify({ isRunning: true, time: Date.now() + 15 * 60 * 1000, }));
+                isAlreadyConnected = { isRunning: true, time: Date.now() + 15 * 60 * 1000, }
+            } else {
+                localStorage.setItem("server", JSON.stringify({ isRunning: false, time: Date.now() }));
+            }
+        }
+        serverStatus();
+        setInterval(() => {
+            serverStatus();
+        }, 10000);
+    }, []);
 
 
 

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import About from '../components/About'
 import Features from '../components/Features';
 import HomeHero from '../components/HomeHero';
+import Contact from '../components/Contact';
 
 const Home = ({ scrollTo }) => {
     useEffect(() => {
@@ -23,6 +24,9 @@ const Home = ({ scrollTo }) => {
             </div>
             <div id="features">
                 <Features />
+            </div>
+            <div id="contact">
+                <Contact />
             </div>
         </>
     )

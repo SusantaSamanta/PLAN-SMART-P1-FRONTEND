@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../../context/AppContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Step3Skills = () => {
 
@@ -42,6 +43,11 @@ const Step3Skills = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (skillsObj.length < 2) {
+            toast.error("At least 2 technical skills are required.");
+            return;
+        }
 
         isProfileComplete ? '' : setProfileSetupStep(profileSetupStep + 1);
 
@@ -86,6 +92,7 @@ const Step3Skills = () => {
                 <button
                     type="button"
                     onClick={handleAddSkill}
+
                     className="bg-blue-600 hover:bg-blue-700 px-4 rounded-md transition"
                 >
                     Add
@@ -126,7 +133,8 @@ const Step3Skills = () => {
 
                 <button
                     type="submit"
-                    className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-md transition" >
+                    // disabled={skillsObj.length <= 2}
+                    className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-md transition disabled:cursor-not-allowed" >
                     {isProfileComplete ? 'Save' : 'Next'}
                 </button>
             </div>

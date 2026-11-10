@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { motion } from 'framer-motion';
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { data, Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 
@@ -34,12 +34,16 @@ const Signup = () => {
     setShowErr('');
   }
 
+  const [loading, setIsLoading] = useState(false);
+
+
   const wait = useRef(false)
   const handleRegistration = async (e) => {
     e.preventDefault();
     if (wait.current) return;
     wait.current = true;
     try {
+      setIsLoading(true);
       const { data } = await axios.post(
         '/api/auth/register',
         inputData,
@@ -55,6 +59,7 @@ const Signup = () => {
       console.error(error);
     } finally {
       wait.current = false;
+      setIsLoading(false)
     }
   };
 
@@ -145,9 +150,10 @@ const Signup = () => {
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full mt-5 py-2 rounded-lg bg-gradient-to-b from-[#769dff] to-[#1a5cff] text-white font-bold  hover:bg-blue-700 transition"
+                disabled={loading}
+                className="w-full mt-5 py-2 rounded-lg bg-gradient-to-b from-[#769dff] to-[#1a5cff] text-white font-bold  hover:bg-blue-700 transition cursor-pointer disabled:cursor-not-allowed"
               >
-                Sign up
+                {loading? "Loading....." : "Sign up"}
               </button>
 
 
@@ -193,7 +199,7 @@ const Signup = () => {
 
 
           </motion.div>
-          <p className="mb-10 w-full h-screen  flex items-end justify-center  md:hidden text-center text-gray-300 text-sm">
+          <p className="mb-20 w-full h-screen  flex items-end justify-center  md:hidden text-center text-gray-300 text-sm">
             Already have an account?{" "}
             <Link to={'/login'} className="text-blue-500 hover:underline">
               Login

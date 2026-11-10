@@ -20,6 +20,7 @@ const Step4CVUpload = () => {
         // console.log(setShowPicForEdit.current, profilePicUrl);
     }
 
+    const [profileLoading, setProfileLoading] = useState(false);
 
     const handleProfileSubmit = async (e) => {
         e.preventDefault();
@@ -36,6 +37,7 @@ const Step4CVUpload = () => {
         formData.append("avatar", file);
 
         try {
+            setProfileLoading(true);
             const res = await axios.post(
                 "/api/user/set-profile-pic",
                 formData,
@@ -47,6 +49,8 @@ const Step4CVUpload = () => {
             );
             if (res.data.success) {
                 setProfilePicUrl(res.data.url);
+                // Clear file input
+                fileInput.value = "";
                 toast.success('Profile update successfully..!');
             }
 
@@ -54,6 +58,8 @@ const Step4CVUpload = () => {
             error.response.data.message ?
                 toast.error(error.response.data.message) :
                 console.log("Profile pic upload failed", error);
+        } finally {
+            setProfileLoading(false);
         }
     };
 
@@ -128,13 +134,16 @@ const Step4CVUpload = () => {
                     }
                     <div className="flex gap-3 mt-4 justify-center items-center">
                         <input
+
                             type="file"
                             accept=".jpg, .jpeg, .png"
                             className="w-full bg-[#1b2544] border border-gray-600 p-0 rounded-md text-white cursor-pointer file:mr-3 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-blue-600 file:text-white hover:file:bg-blue-700"
                         />
 
-                        <button type="submit" className=" bg-green-700 hover:bg-green-800 px-6 py-2 rounded-md transition">
-                            Save
+                        <button
+                            disabled={profileLoading}
+                            type="submit" className=" bg-green-700 hover:bg-green-800 px-6 py-2 rounded-md transition disabled:cursor-not-allowed">
+                            {profileLoading ? "Saving..." : "Save"}
                         </button>
                     </div>
                 </div>

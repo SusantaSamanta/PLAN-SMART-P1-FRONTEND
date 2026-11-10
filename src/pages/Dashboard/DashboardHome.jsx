@@ -8,7 +8,7 @@ const DashboardHome = () => {
     return (
         <div className="h-full">
             {!isProfileComplete ? (
-                <div className='flex flex-col items-center justify-center h-full text-center border-2 text-white'>
+                <div className='flex flex-col items-center justify-center h-full text-center border-0 text-white'>
                     <h2 className="text-2xl font-semibold mb-3">
                         ⚠️ Complete Your Profile to Proceed
                     </h2>

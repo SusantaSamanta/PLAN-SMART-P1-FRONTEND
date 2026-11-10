@@ -56,7 +56,7 @@ const InterviewInstructionModal = ({
 
     return (
         <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/60 backdrop-blur-[2px]">
-            <div className="bg-[#121b33] w-full md:w-full md:max-w-lg rounded-b-none rounded-xl md:rounded-xl shadow-lg border border-gray-700 p-6">
+            <div className="bg-[#121b33] w-full md:w-full md:max-w-lg rounded-b-none rounded-xl md:rounded-xl shadow-lg border border-gray-800 p-4 pb-15 md:p-6">
 
                 {/* Header */}
                 <h2 className="text-xl font-semibold text-white mb-4">

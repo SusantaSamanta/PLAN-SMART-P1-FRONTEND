@@ -31,10 +31,10 @@ const Sidebar = ({ sideMenuOpen, setSideMenuOpen }) => {
 
     return (
         <aside className={`w-44 lg:w-64 absolute lg:relative top-0 ${sideMenuOpen ? "left-0" : "left-[-180px]"} lg:left-0 z-10 h-screen bg-[#10172a] p-4 flex flex-col border-r-1 border-gray-800 transition-all duration-300`}>
-            <h1 className="text-2xl font-bold text-blue-400 mb-10 hidden lg:block">
+            <h1 className="text-2xl font-bold tracking-tighter text-blue-10 mb-10 hidden lg:block">
                 <Link to={'/'}>
-                    <img src="../src/assets/react.svg" alt="logo" className="w-6 h-6 mb-1 mr-2 hidden lg:inline-block hover:animate-[spin-slow_5s_linear_infinite]" />
-                    VISION
+                    <img src="../src/assets/app logo 1.png" alt="logo" className="w-8 h-8 mb-1 mr-2 hidden lg:inline-block" />
+                    FutureVision
                 </Link>
             </h1>
 
@@ -50,10 +50,10 @@ const Sidebar = ({ sideMenuOpen, setSideMenuOpen }) => {
                 <Link to="/dashboard/settings" className={`p-2 pl-3 rounded-md flex items-center gap-2 ${active('/dashboard/settings')}`}>Settings</Link> */}
                 </nav>
 
-                <h1 className="text-2xl font-bold text-blue-400 mb-1 block lg:hidden">
+                <h1 className="text-xl font-bold tracking-tighter mb-1 block lg:hidden">
                     <Link to={'/'}>
-                        <img src="../src/assets/react.svg" alt="logo" className="w-7 h-7 mb-2 mr-2  inline-block hover:animate-[spin-slow_5s_linear_infinite]" />
-                        VISION
+                        <img src="../src/assets/app logo 1.png" alt="logo" className="w-6 h-6 mb-2 mr-1  inline-block hover:animate-[spin-slow_5s_linear_infinite]" />
+                        FutureVision
                     </Link>
                 </h1>
             </div>

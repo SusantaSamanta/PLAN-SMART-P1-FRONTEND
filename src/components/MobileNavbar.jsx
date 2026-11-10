@@ -43,7 +43,7 @@ const MobileNavbar = () => {
 
                 <Link to={'/'} onClick={() => { clickToScroll('home'); setMenuOpen(true) }} className="flex items-center gap-2">
                     <img src="../src/assets/react.svg" alt="logo" className="w-8 h-8  lg:block" />
-                    <h1 className="font-semibold text-lg">PLANSMART</h1>
+                    <h1 className="font-semibold text-lg">FutureVision</h1>
                 </Link>
 
 

@@ -1,4 +1,3 @@
-import React from 'react'
 import Navbar from './components/Navbar'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
@@ -8,10 +7,13 @@ import Signup from './pages/Signup'
 import ForgotPassword from './pages/ForgotPassword'
 import DashboardRoutes from './routes/DashboardRoutes'
 import { ToastContainer } from 'react-toastify'
+import BackendConnectionLoading from './components/BackendConnectionLoading'
+import Footer from './components/Footer'
+import NotFound from './components/NotFound'
 
 
 
-const navHidden = ['/about', '/features', '/', '/contact'];
+const navNotHidden = ['/about', '/features', '/', '/contact'];
 
 
 const Layout = () => {
@@ -36,14 +38,14 @@ const Layout = () => {
 
 
       {
-        (navHidden.includes(location.pathname)) &&
+        (navNotHidden.includes(location.pathname)) &&
         <Navbar />
       }
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<Home scrollTo="about" />} />
         <Route path="/features" element={<Home scrollTo="features" />} />
-        {/* <Route path="/contact" element={<Contact Page/>} /> */}
+        <Route path="/contact" element={<Home scrollTo="contact" />} />
 
         <Route path="/dashboard/*" element={
           <ProtectedRoute>
@@ -53,8 +55,15 @@ const Layout = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-
+        <Route path="*" element={<NotFound />} />
       </Routes>
+
+      <BackendConnectionLoading />
+
+      {
+        (navNotHidden.includes(location.pathname)) &&
+        <Footer />
+      }
 
     </>
   )

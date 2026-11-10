@@ -165,7 +165,8 @@ const Login = () => {
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full mt-8 py-2 rounded-lg bg-gradient-to-b from-[#769dff] to-[#1a5cff] text-white  hover:bg-blue-700 transition font-bold"
+                disabled={isFormSubmitting}
+                className="w-full mt-8 py-2 rounded-lg bg-gradient-to-b from-[#769dff] to-[#1a5cff] text-white  hover:bg-blue-700 transition font-bold disabled:cursor-not-allowed"
               >
                 {isFormSubmitting ? "Loading..." : "Login"}
               </button>
@@ -213,7 +214,7 @@ const Login = () => {
 
 
           </motion.div>
-          <p className="mb-10 w-full h-screen flex items-end justify-center  md:hidden text-center text-gray-300 text-sm">
+          <p className="mb-20 w-full h-screen flex items-end justify-center  md:hidden text-center text-gray-300 text-sm">
             Don't have an account?{" "}
             <Link to={'/signup'} className="text-blue-500 hover:underline">
               Sign up
